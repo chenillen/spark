@@ -1,0 +1,11 @@
+#Notice
+1. Pluralization
+		
+		I18n.backend.store_translations :en, :inbox => {
+		  :one => '1 message',
+		  :other => '%{count} messages'
+		}
+		I18n.translate :inbox, :count => 2
+		# => '2 messages'
+
+see [rails i18n document](http://guides.rubyonrails.org/i18n.html#localized-views)

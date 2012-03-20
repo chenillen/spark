@@ -1,0 +1,33 @@
+<%= render 'home_menu' %>
+
+<%= javascript_include_tag 'user/my_messages'%>
+<%= stylesheet_link_tag "user/my_messages_#{locale}" %>
+
+<div id="my_messages_home">
+	<div id="my_messages_show">
+		
+	</div>
+	<div id="autoload_messages_tools">
+		<div id="loading_messages_box">
+			<img src="/images/loading.gif" id="loading_messages_image">
+			<span id="loading_messages_prompt"><%= t('info.Loading_messages') %></span>			
+		</div>
+		<div id="retry_loading_messages_box">
+			<span class="retry_loading_messages_prompt"><%= t('info.Can_not_loading_messages') %></span>
+			<span class="retry_loading_messages_prompt"><%= t('info.comma') %></span>
+			<span class="retry_loading_messages_prompt"><%= t('info.please') %></span>
+			<span id="retry_loading_messages_action"><%= t('info.retry') %></span>
+			<span class="retry_loading_messages_prompt"><%= t('info.period') %></span>
+		</div>
+	</div>
+	<div id="autoload_messages_mark"></div>
+	
+	<div id="my_message_show_box_original" class="my_message_show_box">
+		<div class="update_show_box">
+			<a class="update_image"><img class="update_image_small" /></a>
+			<span class="update_body">
+		</div>
+		<div class="my_message_updated_at"></div>		
+		<a class="my_message_hope_title"></a>		
+	</div>
+</div>

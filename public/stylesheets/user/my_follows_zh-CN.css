@@ -1,0 +1,154 @@
+#my_follows_home {
+	margin: auto;
+	width: 700px;
+	margin-top: 38px;	
+}
+
+#my_follows_show {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#autoload_follows_tools {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#loading_follows_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+#loading_follows_image {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+#loading_follows_prompt {
+	position: relative;
+	float: left;
+	left: -50%;
+	color: gray;
+	font-size: 11px;
+	margin-left: 3px;
+}
+
+#retry_loading_follows_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+#retry_loading_follows_box span {
+	position: relative;
+	float: left;
+	left: -50%;
+	font-size: 11px;
+}
+
+.retry_loading_follows_prompt {
+	color: gray;
+}
+#retry_loading_follows_action {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#autoload_follows_mark {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 60px;
+}
+
+#my_follow_box_original {
+	display: none;
+}
+
+.my_follow_box {
+	position: relative;
+	float: left;
+	margin-bottom: 32px;
+	width: 100%;
+}
+
+.mf_hope_title {
+	position: relative;
+	float: left;
+	width: 100%;
+	font-size: 16px;
+	color: black;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.mf_hope_body {
+	position: relative;
+	float: left;
+	width: 100%;
+	color: gray;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+/*.mf_follow_followers {
+	position: relative;
+	float: left;
+	color: gray;
+	font-size: 11px;
+	margin-bottom: 5px;
+	display: none;
+	width: 100%;
+}*/
+
+.mf_hope_id {
+	display: none;
+}
+
+.mf_follow_id {
+	display: none;
+}
+
+.mf_time {
+	position: relative;
+	float: left;	
+	width: 100%;
+/*	margin-left: 20px;*/
+	margin-bottom: 5px;
+	font-size: 11px;
+	color: gray;
+/*	font-family: Times, 'Times New Roman', serif;*/
+}
+
+.mf_hope_created_at {
+	position: relative;
+	float: left;
+	margin-right: 15px;
+	font-size: 11px;
+/*	font-family: Times, 'Times New Roman', serif;	*/
+}
+
+.mf_hope_updated_at {
+	position: relative;	
+	float: left;
+	font-size: 11px;
+}
+
+.mf_action {
+	position: relative;
+	float: left;	
+/*	width: 100%;	*/
+	font-size: 12px;
+/*	color: #2E66AD;*/
+}
+
+.mf_unfollow {
+	cursor: pointer;
+}

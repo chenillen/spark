@@ -1,0 +1,784 @@
+/* hope show*/
+#hope_show {
+	position: relative;
+	margin: auto;
+	width: 700px;
+	font-size: 15px;
+	font-family: "Verdana", "Geneva", "New York";
+}
+
+#hw_image_show {   
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-top: 40px;
+/*	margin-bottom: 40px;*/
+/*	margin-top: 30px;*/
+}
+
+#hw_image {
+	position: absolute;
+	cursor: pointer;
+}
+
+#hw_image_description {
+	position: absolute;
+	width: 500px;
+	left: 100px;
+	height: 13px;
+	font-size: 11px;    
+	text-align: center;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+#hw_image_thums_box {
+	position: absolute;
+	width: 690px;
+	height: 60px;
+	top: 360px;
+	left: 5px;
+/*	cursor: pointer;*/
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+#hw_image_thums {
+	position: relative;
+	height: 60px;
+	top: 0px;
+}
+
+#hw_image_thum_shielding {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	top: 0px;
+	background-color: black;
+	opacity: 0.6;
+}
+
+.hw_image_thum_box {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	float: left;
+	margin-right: 10px;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+/*	border: 1px solid blue;*/
+}
+
+.hw_image_thum {
+	position: absolute;
+	left: 0;
+	top:  0;
+	width: 60px;
+	height: 60px;
+	background-repeat: no-repeat;
+	background-position: center;
+/*	border: 1px solid blue;*/
+}
+
+.hw_image_thum_index {
+	display: none;
+}   
+
+#hw_image_thum_selected_index {
+	display: none;
+}
+      
+#hw_title {
+	position: relative;
+	width: 100%;
+	margin: auto; 
+	font-size: 32px;
+	margin-top: 40px;
+/*	margin-bottom: 30px;*/
+	text-align: center;                                                      
+/*	color: red;*/
+/*	font-family: "New York", Times;*/
+	font-weight: bold;
+/*	letter-spacing: 3px;*/
+/*	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;*/
+}  
+
+/*#hw_create_info {
+	margin: auto;
+	margin-top: 10px;
+	font-family: "New York";
+	text-align: center;   
+	font-size: 10px;
+}*/
+
+#hw_body {
+	position: relative;	
+	float: left;
+	width: 100%;
+	margin-top: 40px;
+	display: block;
+	white-space: pre-wrap;
+	font-size: 15px;
+/*	text-indent: 2em;*/
+/*	letter-spacing: 0.5px;*/
+}
+
+#hw_contact_prompt {
+	position: relative;	
+	float: left;
+	width: 100%;
+	/*one line height*/
+	margin-top: 19px;
+/*	font-size: 15px;*/
+/*	margin-bottom: 5px;*/
+	white-space: pre-wrap;	
+	font-weight: bold;
+/*	display: none;*/
+}
+
+#hw_contact {
+	position: relative;	
+	float: left;
+	width: 100%;
+/*	margin-top: 19px;*/
+/*	font-size: 13px;*/
+/*	margin-top: px;*/
+	white-space: pre-wrap;
+/*	display: none;*/
+}    
+
+#hw_hope_info {
+	position: relative;
+	float: left;
+	/*one line height*/	
+	margin-top: 19px;
+/*	font-size: 13px;*/
+/*	left: 50%;*/
+/*	width: 100%;*/
+/*	width: 300px;*/
+/*	color: gray;*/
+/*	font-size: 13px;*/
+/*	color: gray;*/
+/*	margin-bottom: 20px;*/
+/*	color: gray;*/
+/*	display: none;*/
+}
+
+.hw_hope_info_prompt {
+	
+}
+
+#hw_hope_info span{
+	float: left;
+/*	left: -50%;*/
+}
+
+/*#hw_hope_creater_avatar {
+	position: relative;
+	float: left;
+	margin-right: 5px;
+	display: none;	
+}*/
+
+#hw_hope_creater_name {
+	position: relative;
+	float: left;
+/*	font-weight: bold;*/
+	cursor: pointer;
+	color: black;
+/*	text-decoration: none;*/
+/*	font-family: Times, 'Times New Roman', serif;	*/
+}
+
+#hw_hope_create_time {
+	position: relative;
+/*	float: right;*/
+/*	margin-left: 10px;*/
+/*	font-size: 13px;	*/
+}
+
+#hw_hope_update_time {
+	position: relative;
+/*	float: right;*/
+/*	color: red;*/
+/*	margin-left: 10px;*/
+/*	margin-left: 7px;*/
+/*	font-size: 13px;	*/
+}
+
+#hw_updates_message {
+	position: relative;
+	float: right;
+	color: black;
+/*	font-size: 13px;*/
+/*	text-decoration: underline;*/
+/*	margin: auto;*/
+/*	text-align: center;*/
+/*	width: 100%;*/
+/*	margin-top: 10px;	*/
+	margin-bottom: 5px;
+	margin-top: 19px;
+/*	margin-right: 10px;*/
+/*	font-weight: bold;*/
+	cursor: pointer;
+/*	margin-bottom: 20px;*/
+/*	color: #2C65B0;*/
+/*	display: none;*/
+} 
+
+#hw_updates_show_box {
+	position: relative;
+	float: left;
+	width: 100%;
+	/*two line height*/	
+	margin-top: 38px;
+/*	background-color: #EAEAEA;*/
+/*	border: 1px dashed gray;*/
+/*	background-color: gray;*/
+/*	margin-top: 30px;*/
+/*	height: 282px;*/
+/*	display: none;*/
+}
+
+#hw_updates_show {
+	position: relative;
+	float: left;
+/*	left: 10px;*/
+	margin-top: 5px;
+	width: 700px;
+	font-size: 13px;
+/*	top: -5px;*/
+/*	left: -5px;*/
+/*	height: 282px;*/
+/*	background-color: red;*/
+/*	border: 1px solid #C5C5C5;*/
+/*	margin-top: 50px;*/
+}
+
+#hw_updates_prompt {
+	position: realtive;
+	float: left;
+/*	font-size: 20px;*/
+	font-weight: bold;
+/*	display: none;*/
+}
+
+.hw_split_line {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 1px;
+/*	border: 1px solid gray;*/
+	background-color: black;
+}
+
+.hw_update_show {
+	position: relative;
+	float: left;
+/*	margin-left: 10px;*/
+	width: 100%;
+	/*two line height to front line 38px*/
+	margin-top: 19px;
+}
+
+.hw_update_id {
+	display: none;
+}
+
+.hw_update_body_show {
+	position: relative;
+	float: left;
+	width: 100%;
+/*	font-size: 15px;*/
+	margin-bottom: 5px;
+}
+
+.hw_update_image {
+	position: relative;
+/*	margin-top: 10px;*/
+	float: left;
+}
+
+.hw_update_body {
+	position: relative;
+	float: right;
+	font-size: 15px;
+	margin-top: -3px;
+/*	line-height: 16px;*/
+/*	letter-spacing: 0.9px;*/
+/*	font-size: 13px;*/
+}
+
+.hw_update_assist {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 13px;	
+/*	display: none;*/
+/*	display: none;*/
+}
+
+.hw_update_create_time {
+	position: relative;
+	float: left;
+/*	font-size: 11px;*/
+/*	width: 100%;*/
+	color: #4B4B4B;
+/*	font-weight: bold;*/
+/*	text-align: right;*/
+	margin-right: 10px;	
+}
+
+.hw_action_time_split {
+	position: relative;
+	float: left;
+/*	font-size: 11px;*/
+	margin-right: 10px;
+	color: #4B4B4B;
+}
+
+.hw_update_share_action {
+	position: relative;
+	float: left;
+/*	font-size: 11px;*/
+	font-weight: bold;
+/*	margin-right: 10px;	*/
+	cursor: pointer;
+/*	color: #2D66B1;*/
+}
+
+#hw_new_comment_box {
+	position: relative;
+	margin: auto;
+	margin-top: 19px;
+	width: 700px;
+	height: 100px;
+	float: left;
+}
+
+#hw_new_comment_count {
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: right;
+	color: gray;
+	font-size: 11px;
+}
+
+#hw_new_comment {
+	position: absolute;
+	top: 13px;
+	width: 694px;
+	height: 70px;
+	color: gray;
+	font-size: 11px;
+/*	border: 1px solid #83A1FF;*/
+}
+
+#hw_add_comment {
+	position: absolute;
+	right: 0px;
+	top: 92px;
+}
+
+#hw_comment_toolbar {
+	position: absolute;
+	top: 88px;
+	left: 0;
+	width: 100px;
+	height: 40px;
+}
+
+#hw_comment_add_image_tool {
+	position: relative;
+	margin-left: 0px;
+	cursor: pointer;
+	width: 60px;
+	height: 22px;
+	overflow: hidden;
+}
+
+#hw_comment_add_image_icon {
+	position: absolute;
+	margin-left: 0;
+	top: 0;
+	width: 22px;
+	height: 22px;
+	top: 0;
+	cursor: pointer;
+}
+
+#hw_comment_add_image_info {
+	font-size: 11px;
+	position: absolute;
+	left: 27px;
+	top: 4.5px;
+	color: gray;
+/*	display: none;*/
+}
+
+#uploaded_comment_image_box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	display: none;
+}
+
+#uplaoding_comment_image_loading {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 16px;
+	left: 8px;
+}
+
+#uploaded_comment_image {
+	position: absolute;
+	left: 0;
+	top: 8px;
+	width: 32px;
+	height: 32px;
+}
+
+#uploaded_comment_image_delete {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+#hw_add_comment_iframe {
+	display: none;
+}
+
+#hw_comment_add_file {
+/*	position: absolute;*/
+	opacity: 0;
+}
+
+#hope_image_slide_show_box {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+}
+
+#hope_image_slide_show {
+	width: 1200px;
+	height: 1000px;
+	position: relative;	
+	margin: auto;
+	background-color: black;
+}
+
+#hiss_image_slide_show_exit {
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}                
+
+#hiss_image_description {
+	position: absolute;
+	width: 800px;     
+	left: 0px;
+/*	background-color: white;*/
+	color: white;
+	font-size: 11px;
+	text-align: center;
+/*	white-space: nowrap;*/
+	font-family: "Verdana", "Geneva", "New York";
+	display: none;
+}   
+
+.hiss_nav {   
+	position: absolute;
+	display: none;
+}                      
+        
+.hiss_nav_image {
+	position: absolute;
+	cursor: pointer;
+}            
+
+.hiss_nav_shielding {
+	position: absolute;
+	top: 0px;
+	width: 30px;
+	height: 100px;
+	background-color: black;
+	opacity: 0.6;
+	border: 0;
+/*	display: none;*/
+}
+                 
+#hiss_nav_shielding_left {
+	left: 50px;
+}              
+
+#hiss_nav_shielding_right {
+	right: 50px;
+}
+
+#hope_special_comments_box {
+	position: relative;
+	margin-top: 40px;
+	width: 700px;
+	float: left;
+}
+
+#hope_comments_box {
+	position: relative;
+	width: 700px;
+	float: left;
+/*	display: none;*/
+}
+
+#hope_comment_original {
+	display: none;
+}
+
+.hope_comment {
+	position: relative;
+	width: 700px;
+	float: left;
+	margin-bottom: 17px;
+}
+
+.hope_avatar {
+	position: relative;
+	float: left;
+	margin-left: 0;
+	margin-top: 0;
+/*	margin-right: 5px;*/
+/*	top: 0;
+	left: 5px;*/
+}
+
+.hope_user_name {
+	position: relative;
+/*	margin-left: 5px;*/
+	margin-top: 0;
+/*	margin-top: 0;*/
+	float: right;
+	width: 640px;
+	text-align: left;
+	text-decoration: none;
+/*	top: 0;
+	left: 60px;*/
+	color: #2C65B0;
+	font-size: 13px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.hope_comment_main {
+	position: relative;
+	margin-left: 70px;
+	margin-top: -20px;
+	float: left;
+}
+
+.hope_comment_context {
+	position: relative;
+	width: 620px;
+	margin-right: 0px;
+	margin-top: 17px;
+	float: right;
+	text-align: left;
+}
+
+.hope_comment_image {
+	position: relative;
+	float: left;
+	margin-top: 0;
+	cursor: pointer;	
+}
+
+.hope_comment_body {
+/*	position: relative;*/
+	float: right;
+	margin-right: 0px;
+	margin-top: -3px;
+	font-size: 14px;
+	text-align: left;
+/*	vertical-align:text-top;	*/
+}
+
+.hope_tools {
+	position: relative;
+	float: bottom;
+	margin-left: 0;
+	margin-top: 10px;
+/*	margin-bottom: 10px;*/
+/*	display: none;*/
+}
+
+.hope_comment_tools {
+	float: left;
+	margin-top: 17px;
+	font-size: 13px;
+}
+
+.hope_comment_likes_count {
+	position: relative;
+	color: gray;
+	float: left;
+}
+
+.hope_comment_likes_sign {
+	position: relative;
+	color: #2D66B1;
+/*	color: black;*/
+	float: left;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.hope_comment_likes_sign_end {
+	position: relative;
+	color: gray;
+	float: left;
+}
+
+.hope_comment_replies_box {
+	position: relative;
+	float: left;
+/*	margin-left: 20px;*/
+	width: 600px;
+	margin-top: -5px;
+/*	margin-left: 40px;*/
+}
+
+.hope_comment_replies {
+	position: relative;
+	float: left;
+	width: 510px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+#hope_comment_reply_box_original {
+	display: none;
+}
+
+#hope_comment_replies_loading_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+#hope_comment_replies_loading_image {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+#hope_comment_replies_loading_prompt {
+	position: relative;
+	float: left;
+	left: -50%;
+	font-size: 11px;
+}
+
+#hope_comment_replies_loading_retry_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+.hope_comment_replies_loading_retry_prompt {
+	position: relative;
+	float: left;
+	left: -50%;
+	font-size: 11px;
+	color: gray;
+}
+
+#hope_comment_replies_loading_retry_action {
+	position: relative;
+	float: left;
+	left: -50%;
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.hope_comment_reply_box {
+	position: relative;
+	width: 510px;
+	float: left;
+	margin-bottom: 5px;
+}
+
+
+.hope_comment_reply_avatar {
+	position: relative;
+	float: left;
+	width: 30px;
+	height: 30px;
+}
+
+.hope_comment_reply_context {
+	position: relative;
+	float: right;
+	width: 475px;
+	margin-top: -8px;
+}
+
+.hope_comment_reply_username {
+	color: #2C65B0;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.hope_comment_reply_body {
+	font-size: 11px;
+	word-wrap:break-word;
+	word-break:normal;	
+}
+
+#hope_comment_autoload {
+	position: relative;
+	width: 100%;
+	height: 60px;
+/*	background-color: black;*/
+	margin-top: 10px;
+	float: left;
+	opacity: 0;
+/*	display: none;*/
+}
+
+.hope_user_menu {
+	position: relative;
+	cursor: pointer;
+	color: white;
+	font-size: 14px;
+/*	margin-left: 20px;*/
+	margin-top: 12px;
+	float: right;
+	text-decoration: none;	
+}
+
+#follow {
+	color: red;
+}
+
+#share {
+	color: white;
+	margin-right: 20px;
+}

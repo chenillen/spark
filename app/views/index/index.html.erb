@@ -1,0 +1,26 @@
+<%= javascript_include_tag 'jquery.corner', "index/index" %>
+<%= stylesheet_link_tag "index/index_#{locale}" %>
+
+<div id="hopes_home">
+	<div id="hopes_show">
+	</div>
+	<div id="autoload_hopes_tools">
+		<div id="loading_hopes_box">
+			<img src="/images/loading.gif" id="loading_hopes_image">
+			<span id="loading_hopes_prompt"><%= t('info.Loading_hopes') %></span>
+		</div>
+		<div id="retry_loading_hopes_box">
+			<span class="retry_loading_hopes_prompt"><%= t('info.Can_not_loading_hopes') %></span>
+			<span class="retry_loading_hopes_prompt"><%= t('info.comma') %></span>
+			<span class="retry_loading_hopes_prompt"><%= t('info.please') %></span>
+			<span id="retry_loading_hopes_action"><%= t('info.retry') %></span>
+			<span class="retry_loading_hopes_prompt"><%= t('info.period') %></span>
+		</div>
+	</div>
+	<div id="autoload_hopes_mark"></div>		
+</div>
+<a class="hope_show_box" id="hope_show_box_original">
+	<div class="hope_title"></div>
+	<img class="hope_image" />
+	<span class="hope_body"></span>
+</a>

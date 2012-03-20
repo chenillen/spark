@@ -1,0 +1,1 @@
+OPEN_PLATFORMS_CONFIG = YAML.load_file("#{Rails.root}/config/open_platforms.yml")

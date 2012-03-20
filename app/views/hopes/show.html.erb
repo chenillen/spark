@@ -1,0 +1,221 @@
+<%= stylesheet_link_tag "hope/hope_show_#{locale}" %>
+<%= javascript_tag "$(function(){$.data(document.body, 'hope_id', '#{@hope.id.to_s}');});" %>
+<%= javascript_include_tag 'jquery.textchange', 'jquery.iframe-post-form', 'hope/hope_show'%>
+
+<div id="hope_show">
+	<div id="hw_title"><%= @hope.title %></div>
+	<% if @images.size > 0 %> 
+	   <%   
+			image_size = @images[0].sizes['medium']
+ 			image_length = 330.0
+			if image_size
+				size = perfect_mini(image_size.split('x'), image_length)
+			else
+				size = [image_length, image_length]
+			end
+
+			image_left =  ((700.0 - size[0])/2)
+			
+			# store data for future using
+			image_descs = []
+			small_image_urls = []
+			small_image_sizes = []
+			medium_image_urls = []
+			medium_image_sizes = []
+			mini_image_urls = []
+			mini_image_sizes = []
+						
+			if @images.size == 1
+				image_top = 0
+				desc_top = image_top + size[1] + 8
+				
+				image_descs << (@images[0].description || '')
+				small_image_urls << (@images[0].image.url(:small) || '')
+				small_image_sizes << (@images[0].sizes['small'] || '')   		
+				medium_image_urls << (@images[0].image.url(:medium) || '')
+				mini_image_urls << (@images[0].image.url(:mini) || '')
+				
+				if @images[0].description.blank?
+					image_show_height = size[1]
+				else
+					image_show_height = desc_top + 13
+				end
+			else             
+				image_top = (image_length - size[1])/2
+				desc_top = image_top + size[1] + 8
+				                 
+				thums_width = @images.size*70
+				thums_left = (700 - thums_width)/2.0
+				image_show_height = 420		
+			end
+		%>
+		<div id="hw_image_show" style="height:<%= image_show_height %>px;">
+			<img id="hw_image" src="<%= @images[0].image.url(:small) %>"
+			style="top:<%= image_top.to_s %>px; left:<%= image_left %>px; width:<%= size[0] %>px; height:<%= size[1] %>px;"/>
+			<div id="hw_image_description" style="top: <%= desc_top %>px;"><%= @images[0].description %></div>
+			<% if @images.size > 1  %> 
+				<div id="hw_image_thums_box">
+					<div id="hw_image_thums" style="width: <%= thums_width%>px; left: <%= thums_left %>px;">
+						<% @images.each_with_index do |image, index| %>
+							<div class="hw_image_thum_box" id="hw_image_thum_box_<%= index %>">
+								<div class="hw_image_thum" id=<%= image.id %> style="background-image:url('<%= image.image.url(:thum) %>');"></div>
+								<% 
+									image_descs << (image.description || '') 
+								   	small_image_urls << (image.image.url(:small) || '')
+									small_image_sizes << (image.sizes['small'] || '') 																
+								    medium_image_urls << (image.image.url(:medium) || '')
+									mini_image_urls << (image.image.url(:mini) || '')
+								%>
+								<div class="hw_image_thum_index"><%= index %></div>
+							</div>
+						<% end %>
+					</div>
+					<div id="hw_image_thum_shielding" style="left:<%= thums_left %>px"></div>
+					<div id="hw_image_thum_selected_index" style="display:none">0</div>
+				</div>
+			<% end  %>
+
+			<%= javascript_tag "$(function(){$.data(document.body, 'image_descs', #{image_descs});$.data(document.body, 'medium_image_urls', #{medium_image_urls});$.data(document.body, 'small_image_urls', #{small_image_urls});$.data(document.body, 'small_image_sizes', #{small_image_sizes});$.data(document.body, 'mini_image_urls', #{mini_image_urls});});" %>
+		</div>
+	<% end %> 
+
+	<span id="hw_body"><%= @hope.body %></span>
+	<% if !@hope.contact.blank? %>
+		<span id="hw_contact_prompt"><%= t('info.Contacts') %></span>
+		<span id="hw_contact"><%= @hope.contact %></span>
+	<% end %>
+	<div id="hw_hope_info">
+		<span class="hw_hope_info_prompt"><%= t('views.hope.Author') %></span>
+		<a id="hw_hope_creater_name" href="<%= @creater.user_url %>"><%= @creater.username %></a>				
+		<span class="hw_hope_info_prompt"><%= t('info.comma') %></span>		
+		<span class="hw_hope_info_prompt"><%= t('views.hope.Create_time') %></span>
+		<span id="hw_hope_create_time"><%= spark_time(@hope.created_at) %></span>
+		<% if @hope.created_at < @hope.updated_at %>		
+			<span class="hw_hope_info_prompt"><%= t('info.comma') %></span>
+			<span class="hw_hope_info_prompt"><%= t('views.hope.Last_edit_time') %></span>
+			<span id="hw_hope_update_time"><%= spark_time(@hope.updated_at) %></span>
+		<% end %>
+		<span class="hw_hope_info_prompt"><%= t('info.period') %></span>				
+	</div>
+	<% if @hope_updates.size > 0 %>	
+		<div id="hw_updates_show_box">
+			<div id="hw_updates_prompt"><%= t('views.hope.Updates') %></div>
+			<div class="hw_split_line"></div>
+
+			<div id="hw_updates_show">
+				<% @hope_updates.each do |hope_update| %>
+					<div class="hw_update_show">
+						<div class="hw_update_id"><%= hope_update.id %></div>
+						<div class="hw_update_body_show">
+							<% unless hope_update.image_id.blank?
+								update_image = @updates_image_hash[hope_update.image_id]
+								image_size = perfect_mini(update_image[:mini_size].split("x"), 108)
+							%>
+								<span class="hw_update_body" style="width:584px;"><%= hope_update.body %></span>
+								<a class="hw_update_image" href="<%= update_image[:medium_url] %>" style="margin-left: <%= (108 - image_size[0])/2.0 %>px;"><img src="<%= update_image[:mini_url] %>" style="width:<%= image_size[0] %>px; height:<%= image_size[1] %>px;" /></a>								
+							<% else %>
+								<span class="hw_update_body" style="width:100%;"><%= hope_update.body %></span>					  
+							<% end %>		
+							<div class="hw_update_assist">
+								<span class="hw_update_create_time"><%= spark_time_by_second2(hope_update.created_at) %></span>								
+								<span class="hw_action_time_split">|</span>
+								<span class="hw_update_share_action"><%= t('info.Share') %></span>														
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<%= link_to t('views.hope.count_updates', :count => @hope_updates_count), {:controller => "hopeUpdates", :action => 'show_hope_updates', :hope_id => @hope.id}, :id => "hw_updates_message"%>
+		</div>
+	<% end %>
+	<div id="hw_new_comment_box">
+		<div id="hw_new_comment_count">300</div>
+		<textarea id="hw_new_comment" maxlength="300">我要留言....</textarea>
+		<div id="hw_comment_toolbar">
+			<div id="hw_comment_add_image_tool">
+				<img id="hw_comment_add_image_icon" src="/images/Picture_24x24.png" />
+				<div id="hw_comment_add_image_info"><%= t('info.picture') %></div>
+				<%= form_tag('/hopeCommentImages', :method => "post", :id => "hw_add_commnet_image_form", :method => 'post', :enctype => "multipart/form-data" )  do %>
+					<input type="file" id="hw_comment_add_file" name="hope_comment_image[image]"/>
+					<!-- WARNING: add the iframe_post field when using iframe-post  -->
+					<input type="hidden" name="iframe_post" value="true" />
+				<% end %>
+			</div>
+			<div id="uploaded_comment_image_box">
+				<img id="uploaded_comment_image" src="/images/image_32x32.png" />
+				<img id="uplaoding_comment_image_loading" src="/images/loading.gif">
+				<img id="uploaded_comment_image_delete" src="/images/remove_48x48.png" />
+			</div>
+		</div>
+		<button type="button" id="hw_add_comment" class="sexybutton sexysimple sexyblue"><%= t('info.Add_comment') %></button>
+	</div>
+	<div id="hope_special_comments_box"></div>
+	<div id="hope_comments_box"></div>
+	<div id="hope_comment_replies_loading_box">
+		<img id="hope_comment_replies_loading_image" src="/images/loading.gif" />
+		<span id="hope_comment_replies_loading_prompt"><%= t('info.Loading_comments') %></span>
+	</div>
+	<div id="hope_comment_replies_loading_retry_box">
+		<span class="hope_comment_replies_loading_retry_prompt"><%= t('info.Can_not_loading_replies') %></span>
+		<span class="hope_comment_replies_loading_retry_prompt"><%= t('info.comma') %></span>					
+		<span class="hope_comment_replies_loading_retry_prompt"><%= t('info.please') %></span>
+		<span id="hope_comment_replies_loading_retry_action"><%= t('info.retry') %></span>
+		<span class="hope_comment_replies_loading_retry_prompt"><%= t('info.period') %></span>
+	</div>
+	<div id="hope_comment_autoload"></div>
+</div>
+<iframe id="hw_add_comment_iframe">
+</iframe>
+<div class="hope_comment" id="hope_comment_original" >
+	<div class="hope_comment_id" style="display: none;"></div>
+	<img class="hope_avatar" src="/images/logo_50x50.jpg">
+	<a class="hope_user_name"></a>
+	<table border="0" class="hope_comment_context">
+		<tr>
+			<td>
+				<a class="hope_comment_image"><img class="hope_comment_image_thum"></a>
+				<span class="hope_comment_body"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="hope_comment_tools">
+					<span class="hope_comment_likes_count"></span>
+					<span class="hope_comment_likes_sign" title="<%= t('views.hope.Click_to_like') %>"><%= t('info.like')%></span>
+					<span class="hope_comment_likes_sign_end"><%= t('info.this_comment')%></span>						
+				</div>
+			</td>
+		</tr>			
+		<tr>
+			<td>
+				<div class="hope_comment_replies_box">
+					<div class="hope_comment_replies">
+					</div>
+					<div id="hope_comment_reply_box_original" class="hope_comment_reply_box">
+						<img class="hope_comment_reply_avatar" />
+						<div class="hope_comment_reply_context">
+							<span class="hope_comment_reply_username"></span>
+							<span class="hope_comment_reply_body"></span>
+							<span class="hope_comment_reply_time"></span>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>		
+	</table>
+</div>
+
+<div id="hope_image_slide_show_box">
+	<div id="hope_image_slide_show">
+		<img id="hiss_image_slide_show_exit" src="/images/cross_48x48.png" />
+		<div id="hiss_image_description"></div>
+		<div id="hiss_center_image_index" style="display: none;"></div>
+
+		<div class="hiss_nav">
+			<img class="hiss_nav_image" />
+		</div>
+
+		<div id="hiss_nav_shielding_left" class="hiss_nav_shielding"></div>
+		<div id="hiss_nav_shielding_right" class="hiss_nav_shielding"></div>
+	</div>      
+</div>

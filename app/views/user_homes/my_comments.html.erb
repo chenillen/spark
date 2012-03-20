@@ -1,0 +1,94 @@
+<%= javascript_include_tag 'user/my_comments' %>
+<%= stylesheet_link_tag "user/my_comments_#{locale}" %>
+
+<%= render 'home_menu' %>
+
+<div id="my_comments_home">
+	<div id="my_comments_show">
+		<% @comments.each do |comment|
+			hope = @hopes_hash[comment.hope_id]
+		%>
+			<div class="my_comment_show">
+				<div class="comment_id"><%= comment.id %></div>
+				<div class="comment_show_body">
+					<% if comment.image_id
+						image = @images_hash[comment.image_id]
+						size = perfect_mini(image[:sizes]['mini'].split("x"), 110)
+					%>
+						<a class="comment_image" href="<%= image[:medium_url] %>" style="left: <%= (110 - size[0])/2.0 %>px;"><img class="comment_image" style="width: <%= size[0] %>px; height: <%= size[1] %>px;" src=<%= image[:mini_url] %>/></a>
+						<span class="comment_body" style="width:582px;"><%= comment.body %></span>
+					<% else %>
+					  	<span class="comment_body" style="width:100%;"><%= comment.body %></span>
+					<% end %>
+				</div>
+				<div class="comment_actions">
+					<span class="comment_create_time"><%= spark_time_by_second(comment.created_at) %></span>
+					<% if comment.likes > 0 %>
+						<span class="comment_likes_split">|</span>
+						<span class="comment_likes"><%= t('info.count_people_like_this', :count => comment.likes) %></span>						
+					<% end %>
+					<span class="comment_remove"><%= t('info.Delete') %></span>					
+				</div>
+				<% if hope %>
+					<a class="comment_for_hope_titile" href="<%= url_for(hope) %>"><%= hope.title %></a>
+				<% else %>
+					<a class="comment_for_hope_titile" style="color: gray;"><%= t('views.hope.this_hope_was_deleted') %></a>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<% if @comments_count > 50 
+		page_count = (@comments_count/50.0).ceil
+	%>
+		<div id="my_comments_paging">
+			<% 
+				page_begin = @page - 2
+				page_end = @page + 2
+				if page_begin < 1
+					page_end += 1 - page_begin
+					page_end = (page_end > page_count)? page_count : page_end					
+					page_begin = 1
+				end
+				if page_end > page_count
+					page_begin = page_begin - (page_end - page_count)
+					page_begin = (page_begin < 1)? 1 : page_begin
+					page_end = page_count
+				end
+				
+				url = url_for(:controller => 'userHomes', :action => 'index', :reading => 'my_comments') + '&page='
+			 %>
+			
+			<% if @page < page_count %>
+				<a id="next_comments_page" class="sexybutton sexysimple sexyblue" href="<%= url + (@page + 1).to_s %>"><%= t('info.Next_page') %></a>
+			<% end  %>
+			
+			<span id="comments_page_numbers_box">
+				<% if page_begin > 2 %>
+					<a class="comments_page_number" href="<%= url + "1" %>">1</a>
+					<span class="comments_page_number" style="cursor: auto;">...</span>				
+				<% elsif page_begin == 2 %>
+					<a class="comments_page_number" href="<%= url + "1" %>">1</a>
+				<% end %>	
+				
+				<% for i in page_begin..page_end  %>
+					<% if i == @page %>
+						<a class="comments_page_number comments_current_page_number" href="<%= url + i.to_s %>"><%= i %></a>
+					<% else %>
+						<a class="comments_page_number" href="<%= url + i.to_s%>"><%= i %></a>
+					<% end %>
+				<% end %>
+				
+				<% if page_end < page_count - 1 %>
+					<span class="comments_page_number" style="cursor: auto;">...</span>
+					<a class="comments_page_number" href="<%= url + page_count.to_s %>"><%= page_count %></a>
+				<% elsif page_end == page_count - 1 %>
+				  	<a class="comments_page_number" href="<%= url + page_count.to_s %>"><%= page_count %></a>
+				<% end %>
+			</span>
+			
+			<% if @page > 1 %>
+				<a id="previous_comments_page" class="sexybutton sexysimple sexyblue" href="<%= url + (@page - 1).to_s %>"><%= t('info.Previous_page') %></a>
+			<% end %>
+		</div>
+	<% end %>
+</div>

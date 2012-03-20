@@ -1,0 +1,309 @@
+.field_error {
+	border: 1px solid red;
+}
+
+.red {
+	color: red;
+}
+
+body {
+	margin: 0;
+	padding: 0; 
+	font-family: Verdana, Geneva, "New York", sans-serif;
+}
+
+#main {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 100%;
+}
+
+/* TODO: fix it on ie6. see http://ryanfait.com/resources/fixed-positioning-in-internet-explorer/ */
+#header {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	left: 0;
+}
+
+#header_background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 39px;
+/*	background-color: #506988;*/
+/*	background-color: #162DA1;	*/
+/*	background-color: #244E82;*/
+	background-color: black;
+/*	opacity: 0.7;*/
+/*	display: none;*/
+}
+
+#header_context {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 39px;
+/*	display: none;*/
+}
+
+#header_bar {
+	position: relative;
+	margin: auto;
+	width: 800px;
+	height: 100%;
+}
+
+.user_menu {
+	position: relative;
+	cursor: pointer;
+	color: white;
+	font-size: 14px;
+	margin-left: 20px;
+	margin-top: 12px;
+	float: left;
+	text-decoration: none;
+}
+
+#logo {
+/*	color: red;*/
+}
+
+#login {
+/*	color: red;*/
+}
+
+#logout {
+	display: none;
+}
+
+#create_hope {
+	color: red;
+}
+
+#user_bar {
+	position: relative;	
+	height: 100%;
+	float: left;
+	display: none;
+	color: white;
+	margin-right: 20px;
+}
+
+#avatar {
+	position: relative;
+	float: left;
+}
+
+#username {
+	position: relative;
+	float: left;
+	font-size: 14px;
+	margin-top: 12px;
+	margin-left: 5px;
+}
+
+#user_home_link {
+	position: relative;
+	float: left;
+	font-size: 14px;
+	margin-top: 12px;
+	margin-left: 10px;
+	color: white;	
+	text-decoration: none;
+}
+
+#user_home_link_text_wrap {
+	position: relative;
+	float: left;
+}
+
+#header_shadow {
+	position: absolute;
+	bottom: 0;
+	left: 1px;
+	height: 1px;
+	width: 100%;
+	background-color: #A2A2A2;
+	opacity: 0.7;
+}
+
+#content {
+	position: relative;
+	margin: auto;
+}
+
+#footer {
+	position: relative;
+	margin: auto;
+}
+
+.shielding {             
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	opacity: 0.6;
+	background-color: black;
+	display: none;
+	z-index: 200;
+}
+
+#login_wall_shielding {
+	position: absolute;
+	background-color: black;
+/*	opacity: 1;*/
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 500;
+	display: none;
+}
+
+#login_wall_exit {
+	position: absolute;
+	color: white;
+	cursor: pointer;
+	right: 20px;
+	top: 10px;
+	font-size: 13px;
+	width: 20px;
+	height: 20px;
+}
+
+#login_wall {
+	position: relative;
+	margin: auto;
+	width: 500px;
+/*	height: 100px;*/
+/*	border: 1px solid red;*/
+}
+
+#login_info {
+	position: absolute;
+	top: 0;
+	color: white;
+	width: 500px;
+	left: 0px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	letter-spacing: 1px;
+/*	text-shadow: 1px 1px white;*/
+/*	background-color: white;*/
+}
+
+#login_platforms {
+	position: relative;
+	height: 100px;
+	margin: auto;
+	width: 168px;
+	top: 90px;
+}
+
+.login_platform {
+	position: relative;
+	float: left;
+	width: 64px;
+	height: 94px;
+	cursor: pointer;
+}
+
+#login_sina_weibo {
+	margin-right: 40px;
+}
+
+#login_tencent_weibo {
+	
+}
+
+.login_platform_icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+}
+
+.login_platform_name {
+	position: absolute;
+	top: 70px;
+	color: white;
+	width: 100%;
+	text-align: center;
+}
+
+/*#home_bar_shielding {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+/*	background-color: white;*/
+/*	opacity: 0.3;*/
+	bottom: 0;
+	display: none;
+}
+
+#home_bar {
+	width: 800px;
+	height: 100%;
+	top: 0;
+	margin: auto;
+	position: relative;
+}
+
+#user_info {
+	width: 50px;
+	height: 70px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#user_avatar {
+	position: absolute;
+}
+
+#user_name {
+	position: absolute;
+/*	color: white;*/
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+	font-size: 11px;
+	text-align: center;
+}*/
+
+.gray {
+	color: gray;
+}
+
+#new_messages_count_wrap_original {
+	display: none;
+}
+
+.new_messages_count_warp {
+	position: relative;
+	float: left;
+	font-size: 14px;
+	display: none;
+}
+
+.new_messages_count {
+	position: relative;
+	float: left;
+	font-size: 14px;
+/*	top: -6px;*/
+/*	margin-left: 1px;*/
+	color: red;
+}
+
+.new_messages_count_bracket {
+	position: relative;
+	float: left;
+	font-size: 14px;
+}

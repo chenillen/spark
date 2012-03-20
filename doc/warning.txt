@@ -1,0 +1,25 @@
+1. Add hidden field "iframe_post" when using iframe-post to upload image
+2. Avoid doblue click on every page's action
+3. jquery addition
+	// add csrf-token for ajax post
+	$("body").bind("ajaxSend", function(elm, xhr, s){
+	   if (s.type == "POST") {
+	      xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr("content"));
+	   }
+	});
+	
+	// fix the mobile safari offset problem
+	if (/webkit.*mobile/i.test(navigator.userAgent)) {
+	  (function($) {
+	      $.fn.offsetOld = $.fn.offset;
+	      $.fn.offset = function() {
+	        var result = this.offsetOld();
+	        result.top -= window.scrollY;
+	        result.left -= window.scrollX;
+	        return result;
+	      };
+	  })(jQuery);
+	}
+4. client must use request queue.
+
+5. TODO: Consider hope had been deleted, when using hope_follow, hope_update, hope_comment..

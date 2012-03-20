@@ -1,0 +1,99 @@
+<%= render 'home_menu' %>
+
+<%= javascript_include_tag 'jquery.iframe-post-form', 'jquery.textchange', 'user/my_hopes' %>
+<%= stylesheet_link_tag "user/my_hopes_#{locale}" %>
+
+<div id="my_creates_home">
+	<div id="my_creates_show">
+	</div>
+	<div id="loading_hopes_tools">
+		<div id="loading_hopes_box">
+			<img id="hope_loading_image" src="/images/loading.gif" />
+			<span id="hope_loading_prompt"><%= t('info.Loading_hopes') %></span>
+		</div>
+		<div id="loading_hopes_retry_box">
+			<span class="hope_loading_retry_prompt"><%= t('info.Can_not_loading_hopes') %></span>
+			<span class="hope_loading_retry_prompt"><%= t('info.comma') %></span>
+			<span class="hope_loading_retry_prompt"><%= t('info.please') %></span>
+			<span id="hope_loading_retry_prompt_action"><%= t('info.retry') %></span>				
+			<span class="hope_loading_retry_prompt"><%= t('info.period') %></span>
+		</div>
+	</div>
+	<div id="autoloading_hopes_mark"></div>
+
+	<div class="my_create_hope_box" id="my_create_hope_box_original">
+		<div class="mc_hope_id"></div>
+		<a class="mc_hope_title"></a>
+		<div class="mc_hope_body"></div>
+		<span class="mc_time">
+			<span class="mc_hope_created_at"></span>
+			<span class="mc_hope_updated_at"></span>
+		</span>
+		<span class="mc_hope_split">-</span>
+		<span class="mc_hope_followers"></span>
+		<div class="mc_action">
+			<div class="mc_update"><%= t('info.Update') %></div>
+			<div class="mc_edit"><%= t('info.Edit') %></div>		
+			<div class="mc_delete"><%= t('info.Delete') %></div>
+			<div class="mc_finish"><%= t('info.Finish') %></div>			
+		</div>
+		<div class="hope_updates_box">
+			<div class="hope_update_textarea_count">300</div>
+			<textarea class="hope_update_textarea" maxLength="300"></textarea>
+			<div class="hope_update_tools">
+				<div class="hope_update_image_tool">
+					<div class="hope_update_image_func">
+						<img class="hope_update_image_icon" src="/images/Picture_24x24.png">						
+						<%= form_tag('/hopeUpdateImages', :method => "post", :class => "hope_update_image_form", :method => 'post', :enctype => "multipart/form-data" )  do %>
+							<input type="file" class="hope_update_image_file" name="image">
+							<!-- WARNING: add the iframe_post field when using iframe-post  -->
+							<input type="hidden" name="iframe_post" value="true" />
+						<% end %>
+					</div>
+					<div class="hope_update_image_prompt"><%=t('info.picture')%></div>					
+					<div class="hope_update_image_upload_box">
+						<div class="hope_update_image_uploading">
+							<img src="/images/image_32x32.png" class="hope_update_image_uploading_image">
+							<img src="/images/loading.gif" class="hope_update_image_uploading_loading">
+						</div>
+						<img class="hope_update_uploaded_image">
+						<img src="/images/remove_48x48.png" class="hope_update_uploaded_image_remove" />
+					</div>
+					<div class="hope_update_image_cancled">false</div>
+					<div class="hope_update_image_id"></div>
+				</div>
+				<button class="hope_update_add sexybutton sexysimple sexyblue"><%= t('info.Update') %></button>
+			</div>
+			<div class="hope_updates_show">
+			</div>	
+			<div class="hope_updates_loading_wrap">
+				<div class="hope_updates_loading_box">
+					<img class="hope_updates_loading_image" src="/images/loading.gif" />
+					<span class="hope_updates_loading_prompt"><%= t('info.Loading_updates') %></span>
+				</div>
+				<div class="hope_updates_loading_retry_box">
+					<span class="hope_updates_loading_retry_prompt"><%= t('info.Can_not_loading_updates') %></span>
+					<span class="hope_updates_loading_retry_prompt"><%= t('info.comma') %></span>					
+					<span class="hope_updates_loading_retry_prompt"><%= t('info.please') %></span>
+					<span class="hope_updates_loading_retry_action"><%= t('info.retry') %></span>
+					<span class="hope_updates_loading_retry_prompt"><%= t('info.period') %></span>														
+				</div>	
+				<div class="hope_updates_loading_more"><span><%= t('info.More') %></span></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="hope_update_show" id="hope_update_show_original">
+		<div class="hope_update_id"></div>	
+		<div class="hope_update_show_body">
+			<img class="hope_update_image" />		
+			<span class="hope_update_body"></span>
+		</div>
+		<span class="hope_update_delete_action"><%= t('info.Delete') %></span>			
+		<span class="hope_update_show_action_split">|</span>
+		<span class="hope_update_created_at"></span>		
+	</div>
+
+	<iframe id="hope_update_image_iframe"></iframe>
+</div>

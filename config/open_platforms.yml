@@ -1,0 +1,9 @@
+sina_weibo:
+    client_id: 13450026
+    client_secret: 29f6df4ae62fa587264dc2799a484f45
+    register_url: www.xiwangbang.com
+    
+qq:
+    client_id: 801067714
+    client_secret: 42ad1d6476e3b16e6fce4af9afceadaa
+    url: www.xiwangbang.com    

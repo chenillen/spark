@@ -1,0 +1,468 @@
+#my_creates_home {
+	position: relative;
+	width: 700px;
+	margin: auto;
+	margin-top: 38px;	
+}
+
+#my_creates_show {
+	position: relative;
+	width: 100%;
+	float: left;
+}
+
+#my_create_hope_box_original {
+	display: none;
+}
+
+.my_create_hope_box {
+	position: relative;
+	float: left;
+	margin-bottom: 32px;
+}
+
+.hope_updates_box {
+	position: relative;
+	float: left;
+	width: 606px;
+	height: 100%;
+	margin-top: 5px;
+/*	margin-bottom: 15px;*/
+	background-color: white;
+	margin-left: 15px;
+	display: none;
+}
+
+.hope_update_textarea_count {
+	position: relative;
+	font-size: 11px;
+	float: right;
+	color: gray;
+}
+
+.hope_update_textarea {
+	position: relative;
+	float: left;
+/*	margin-top: 10px;*/
+	width: 600px;
+	height: 70px;
+}
+
+#hope_update_show_original {
+	display: none;
+}
+
+.hope_update_show {
+	margin-bottom: 20px;
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.hope_update_delete_action {
+	position: relative;
+	float: right;
+	margin-top: 5px;	
+	font-size: 11px;
+	margin-left: 10px;
+/*	color: gray;*/
+	cursor: pointer;	
+}
+
+.hope_update_show_action_split {
+	position: relative;
+	float: right;
+	margin-top: 5px;	
+	font-size: 11px;
+	margin-left: 10px;	
+	color: gray;
+}
+
+.hope_update_created_at {
+	position: relative;
+	float: right;
+	margin-top: 5px;
+	font-size: 11px;
+	color: gray;
+}
+
+.hope_update_id {
+	display: none;
+}
+
+.hope_update_show_body {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.hope_update_image {
+	position: relative;
+	float: left;
+	display: none;
+}
+
+.hope_update_body {
+	position: relative;
+	float: right;
+/*	margin-right: 0px;*/
+	margin-top: -3px;
+	font-size: 13px;
+}
+
+.hope_update_tools {
+	position: relative;
+	float: left;
+	margin-top: 0px;
+	width: 606px;
+}
+
+.hope_update_add {
+	position: relative;
+	float: right;
+	margin-right: 0;
+	margin-top: 3px;
+}
+
+.hope_update_image_tool {
+	position: relative;
+	float: left;
+}
+
+.hope_update_image_func {
+	position: relative;
+	float: left;
+	width: 24px;
+	height: 24px;
+}
+
+.hope_update_image_file {
+	position: absolute;
+	left: 0;
+	width: 24px;
+	height: 24px;
+	opacity: 0;
+}
+
+.hope_update_image_icon {
+	position: absolute;
+	left: 0;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.hope_update_image_prompt {
+	position: relative;
+	float: left;
+	margin-left: 3px;
+	margin-top: 5px;
+	font-size: 10px;
+	color: gray;
+}
+
+.hope_update_image_upload_box {
+	position: relative;
+	float: left;
+	margin-top: 8px;
+	width: 32px;
+	height: 32px;
+	display: none;
+}
+
+.hope_update_image_uploading {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 32px;
+	height: 32px;
+}
+
+.hope_update_image_uploading_image {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 32px;
+	height: 32px;
+}
+
+.hope_update_image_uploading_loading {
+	position: absolute;
+	left: 8px;
+	top: 8px;
+}
+
+.hope_update_uploaded_image_remove {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	height: 16px;
+	width: 16px;
+	cursor: pointer;
+}
+
+.hope_update_image_cancled {
+	display: none;
+}
+
+.hope_update_image_id {
+	display: none;
+}
+
+.hope_update_uploaded_image {
+	position: absolute;
+	display: none;
+}
+
+.hope_updates_loading_wrap {
+	position: relative;
+	float: left;
+	margin-top: 5px;	
+	width: 100%;
+}
+
+.hope_updates_loading_box {
+	position: relative;
+	float: left;
+	left: 50%;
+}
+
+.hope_updates_loading_image {
+	position: relative;
+	float: left;
+	height: 16px;
+	widht: 16px;
+	left: -50%;
+}
+
+.hope_updates_loading_prompt {
+	position: relative;
+	float: left;
+	font-size: 11px;
+	color: gray;
+	margin-left: 4px;
+	left: -50%;	
+}
+
+.hope_updates_loading_retry_box {
+	position: relative;
+/*	margin-left: 250px;*/
+/*	width: 30px;*/
+	float: left;
+	left: 50%;
+/*	margin: auto;*/
+	display: none;
+}
+
+.hope_updates_loading_retry_box span {
+	left: -50%;
+}
+
+.hope_updates_loading_retry_prompt {
+	position: relative;
+	float: left;
+	color: gray;
+	font-size: 11px;
+}
+
+.hope_updates_loading_retry_action {
+	font-weight: bold;
+	position: relative;
+	float: left;	
+	font-size: 11px;
+	cursor: pointer;	
+}
+
+.hope_updates_loading_more {
+	position: relative;
+	float: left;
+	left: 50%;
+	cursor: pointer;
+	font-size: 11px;
+	color: gray;
+	display: none;
+}
+
+.hope_updates_loading_more span {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+.hope_updates_show {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.mc_hope_title {
+	position: relative;
+	float: left;
+	width: 100%;
+	font-size: 16px;
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;	
+}
+
+.mc_hope_body {
+	position: relative;
+	float: left;
+	width: 100%;
+	color: gray;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+.mc_hope_id {
+	display: none;
+}
+
+.mc_time {
+	position: relative;
+	float: left;	
+/*	width: 100%;*/
+/*	margin-left: 20px;*/
+	margin-bottom: 5px;
+	font-size: 11px;
+	color: gray;
+/*	font-family: Times, 'Times New Roman', serif;*/
+}
+
+.mc_hope_split {
+	position: relative;
+	float: left;
+	margin-left: 10px;
+/*	margin-top: -1px;*/
+	color: gray;
+	font-size: 11px;
+	display: none;
+}
+
+.mc_hope_followers {
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	font-size: 11px;
+	color: gray;
+	display: none;
+}
+
+.mc_hope_created_at {
+	position: relative;
+	float: left;
+	margin-right: 10px;
+	font-size: 11px;
+/*	font-family: Times, 'Times New Roman', serif;	*/
+}
+
+.mc_hope_updated_at {
+	position: relative;
+	float: left;
+	font-size: 11px;
+}
+
+.mc_action {
+	position: relative;
+	float: left;	
+	width: 100%;	
+	font-size: 12px;
+}
+
+.mc_delete {
+	position: relative;
+	float: left;	
+	margin-right: 10px;
+	cursor: pointer;	
+}
+
+.mc_finish {
+	position: relative;
+	float: left;	
+	margin-right: 10px;
+	cursor: pointer;
+/*	color: red;*/
+}
+
+.mc_update {
+	position: relative;
+	float: left;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.mc_edit {
+	position: relative;
+	float: left;	
+	margin-right: 10px;
+	cursor: pointer;	
+}
+
+#hope_update_image_iframe {
+	display: none;
+}
+
+#loading_hopes_tools {
+	position: relative;
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+}
+
+#loading_hopes_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+#loading_hopes_box span {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+#hope_loading_image {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+#hope_loading_prompt {
+	margin-left: 3px;
+	font-size: 11px;
+	color: gray;
+}
+
+#loading_hopes_retry_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;	
+}
+
+#loading_hopes_retry_box span {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+.hope_loading_retry_prompt {
+	font-size: 11px;
+	color: gray;
+}
+
+#hope_loading_retry_prompt_action {
+	font-weight: bold;
+	font-size: 11px;
+	cursor: pointer;
+}
+
+#autoloading_hopes_mark {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 60px;
+}

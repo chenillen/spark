@@ -1,0 +1,26 @@
+#jquery
+##jquery.corner
+
+##jquery.tr
+
+##jquery.textchange
+
+##jquery.iframe-post-form
+
+##jquery.autoresize
+###Link [jquery.autoresize](https://github.com/padolsey/jQuery.fn.autoResize)
+###Note
+	1. be sure to set textarea style 'display' to 'block'.
+	2. Element add by js is not working, you need to excute the 'autoResize()' function everytime you add a new textarea.
+
+##jquery-ajaxQueue
+###Link [jquery-ajaxQueue](https://github.com/roblynch16/jQuery-Ajax-Queue)
+###Note
+	1. There is a error on sync model. It will miss the original complete callback, i have changed it.
+	
+
+##fancybox2
+###[fancybox](http://fancyapps.com/fancybox)	
+
+###Note
+	1. I annotate the radius of box in jquery.fancybox.css of ".fancybox-outer"

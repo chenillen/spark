@@ -1,0 +1,7 @@
+#sina
+App Key：13450026
+App Secret：29f6df4ae62fa587264dc2799a484f45
+
+#qq
+App Key： 801067714
+App Secret： 42ad1d6476e3b16e6fce4af9afceadaa

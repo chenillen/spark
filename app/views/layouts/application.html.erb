@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('info.Spark') %></title>
+  <%= stylesheet_link_tag 'sexybutton/sexybuttons', '/fancybox/helpers/jquery.fancybox-thumbs.css', '/fancybox/jquery.fancybox.css', 'application'%>
+  <%= javascript_include_tag "jquery-1.7.min", '/fancybox/jquery.fancybox.js', '/fancybox/helpers/jquery.fancybox-thumbs.js', "jquery.tr", 'locales', 'jquery-cookie', 'jquery-ajaxQueue', 'jquery.getUrlParam', 'application' %>
+  <%= csrf_meta_tags %>
+
+<script type="text/javascript" charset="utf-8">
+	$.tr.dictionary(spark_locales);
+	$.tr.language(<%= "'#{locale}'"%>);
+	var tr = $.tr.translator();
+</script>
+	
+</head>
+<body>
+	<div id="main">
+		<div id="content"><%= yield %></div>
+		<div id="footer"></div>
+	</div>
+	<div id="header">
+		<div id="header_shadow"></div>		
+		<div id="header_background">
+		</div>
+		<div id="header_context">
+			<div id="header_bar">
+				<div id="user_bar">
+					<img id="avatar" />
+					<div id="username"></div>
+					<a href="/home?reading=my_messages" id="user_home_link"><span id="user_home_link_text_wrap"><%= t('info.Home') %></span></a>
+				</div>				
+				<a href="/" id="logo" class="user_menu"><%= t('info.Spark') %></a>
+				<a href="/hopes/new" id="create_hope" class="user_menu"><%= t('info.Create_hope') %></a>				
+				<div id="login" class="user_menu"><%= t('info.Login') %></div>
+				<div id="logout" class="user_menu"><%= t('info.Logout') %></div>
+			</div>
+		</div>
+		
+	</div>	
+	<div class="shielding"></div>	
+	<div id="login_wall_shielding">
+		<img id="login_wall_exit" src="/images/cross_48x48.png">
+		<div id="login_wall">
+			<div id="login_info"></div>
+			<div id="login_platforms">
+				<div class="login_platform" id="login_sina_weibo">
+					<img class="login_platform_icon" id="sina_weibo_login_icon" src="/images/sina_logo_64x64.png" />
+					<div class="login_platform_name"><%= t('info.sina_weibo') %></div>
+				</div>
+				<div class="login_platform" id="login_tencent_weibo">
+					<img class="login_platform_icon" id="tencent_weibo_login_icon" src="/images/tencent_weibo_64x64.png" />
+					<div class="login_platform_name"><%= t('info.tencent_weibo') %></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<span class="new_messages_count_wrap" id="new_messages_count_wrap_original">
+	<span class="new_messages_count_bracket">(</span>
+	<span class="new_messages_count"></span>
+	<span class="new_messages_count_bracket">)</span>
+</span>
+
+</html>

@@ -1,0 +1,38 @@
+<%= render 'home_menu' %>
+
+<%= javascript_include_tag 'user/my_follows' %>
+<%= stylesheet_link_tag "user/my_follows_#{locale}" %>
+
+<div id="my_follows_home">
+	<div id="my_follows_show">
+	</div>
+	<div id="autoload_follows_tools">
+		<div id="loading_follows_box">
+			<img src="/images/loading.gif" id="loading_follows_image" />
+			<span id="loading_follows_prompt"><%= t('info.Loading_follows') %></span>
+		</div>
+		<div id="retry_loading_follows_box">
+			<span class="retry_loading_follows_prompt"><%= t('info.Can_not_loading_follows') %></span>
+			<span class="retry_loading_follows_prompt"><%= t('info.comma') %></span>
+			<span class="retry_loading_follows_prompt"><%= t('info.please') %></span>
+			<span id="retry_loading_follows_action"><%= t('info.retry') %></span>
+			<span class="retry_loading_follows_prompt"><%= t('info.period') %></span>			
+		</div>
+	</div>
+	<div id="autoload_follows_mark"></div>
+
+	<div class="my_follow_box" id="my_follow_box_original">
+		<div class="mf_hope_id"></div>
+		<div class="mf_follow_id"></div>		
+		<a class="mf_hope_title"></a>
+		<div class="mf_hope_body"></div>
+		<!-- <div class="mf_time">
+			<div class="mf_hope_created_at"></div>
+			<div class="mf_hope_updated_at"></div>						
+		</div> -->
+		<!-- <div class="mf_follow_followers"></div> -->
+		<div class="mf_action">
+			<div class="mf_unfollow"><%= t('info.unfollow') %></div>
+		</div>
+	</div>
+</div>

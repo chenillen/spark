@@ -1,0 +1,507 @@
+/*hope form*/
+#hope_form_box {
+	position: relative;
+	width: 606px;
+	height: 750px;
+	margin: auto;
+	margin-top: 31px;
+/*	font-family: "Verdana", "Geneva", "New York", sans-serif;*/
+	font-family: Times, 'Times New Roman', serif;
+}
+
+textarea {
+	font-family: "Verdana", "Geneva", "New York", sans-serif;
+/*	font-family: Times, 'Times New Roman', serif;*/
+}
+
+input {
+	font-family: "Verdana", "Geneva", "New York", sans-serif;	
+/*	font-family: Times, 'Times New Roman', serif;*/
+}
+
+.hope_form_label {
+	position: absolute;
+	font-size: 27px;
+	font-weight: bold;
+}
+
+.hope_form_field_prompt {
+	position: absolute;
+	font-size: 11px;
+	color: gray;
+}
+
+.hope_form_field_count {
+	position: absolute;	
+	font-size: 13px;
+	color: gray;      
+	width: 30px;
+	text-align: right;
+}
+
+.hope_form_error {
+	color: red;
+	position: absolute;
+	font-size: 12px;
+	bottom: 2px;
+}
+
+#hope_form_title_assist {
+	width: 100%;
+	height: 30px;
+	position: relative;
+	float: left;
+}
+
+#hope_form_title_label {
+	left: 0px;
+}
+
+#hope_form_title_error {
+	left: 100px;
+}
+
+#hope_form_title_prompt {
+	left: 383px;
+	bottom: -2px;
+}
+
+#hope_form_title_count {
+	left: 340px;
+	bottom: -2px;
+}
+
+#hope_form_title {
+	position: relative;
+	float: left;
+	top: 0;
+	margin-bottom: 40px;
+	height: 24px;
+	width: 400px;
+	font-size: 14px;
+}
+
+#hope_form_body_assist {
+	width: 100%;
+	height: 30px;
+	position: relative;
+	float: left;	
+}
+
+#hope_form_body_label {
+	left: 0px;
+}
+
+#hope_form_body_error {
+	left: 100px;
+}
+
+#hope_form_body_prompt {
+	left: 559px;
+	bottom: -2px;	
+}
+
+#hope_form_body_count {
+	left: 517px;
+	bottom: -2px;	
+}
+
+#hope_form_body {
+	position: relative;
+	float: left;
+	width: 600px;
+	height: 300px; 
+	white-space: pre-warp;
+}
+
+#hope_form_contact_assist {
+	position: relative;
+	float: left;	
+	width: 100%;	
+	height: 30px;
+	margin-top: 0px;
+}
+
+#hope_form_contact_label {
+	left: 0px;
+}
+
+#hope_form_contact_error {
+	left: 120px;
+}
+
+#hope_form_contact_prompt {
+	left: 377px;
+	bottom: -2px;
+}
+
+#hope_form_contact_count {
+	left: 337px;
+	bottom: -2px;
+}               
+
+#hope_form_contact {
+	position: relative;
+	float: left;
+	width: 400px;
+	height: 60px;
+	margin-bottom: 40px;
+}
+
+#hope_form_submit {
+	display: block;
+	position: relative;
+	float: right;
+	margin-top: 90px;
+/*	top: 100px;*/
+}
+
+#hope_form_add_picture_button {
+	position: relative;
+	float: right;
+	margin-top: 3px;
+	margin-bottom: 11px;
+}
+
+#hope_form_image_box {
+	position: absolute;
+	width: 558.6px;
+	height: 395px;
+	left: 23.7px;
+	top: 130px;
+	background-color: white;
+	box-shadow: 5px, 5px, red;
+	display: none;
+}
+
+#hope_form_image_box_quit {
+	position: absolute;
+	right: 2px;
+	bottom: 2px;
+}
+
+#hope_form_uploaded_images_box {
+	position: absolute;
+	top: 5px;
+	left: 29px;
+	width: 500px;
+	height: 50px;
+/*	background-color: red;*/
+}
+
+.hope_form_uploaded_image {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+/*	display: none;*/
+}
+
+.hope_form_uploaded_image_description {
+	display: none;
+}
+
+.hope_form_uploaded_image_name {
+	margin: 0;
+	padding: 0;
+	display: none;	
+}
+
+.hope_form_uploaded_image_remove {
+	position: absolute;
+	top: 0px;
+	left: 34px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+.hope_form_uploaded_image_id {
+	display: none;
+}
+
+.hope_form_uploaded_image_thum {
+	position: absolute;
+	left: 0px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+#hope_form_image_edit {
+	position: absolute;
+	width: 422px;
+	height: 230px;
+	background-color: white;
+	z-index: 301;
+	left: 92px;
+	top: 215px;
+	display: none;
+}
+
+#hope_form_image_edit_background {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	left: 188px;
+	top: 10px;
+/*	background-image: url('/images/pictures_64x64.png');*/
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#hope_form_image_edit_target_id {
+	display: none;
+}
+
+#hope_form_image_edit_image_description_label {
+	position: absolute;
+	top: 104px;
+	left: 27px;
+	font-size: 11px;
+	font-weight: normal;
+} 
+
+#hope_form_image_edit_image_description {
+	position: absolute;
+	width: 300px;
+	height: 40px;
+	top: 105px;
+	left: 82px;
+	font-size: 11px;
+}
+
+#hope_form_image_edit_description_count {
+	position: absolute;
+	top: 92px;
+	font-size: 11px;
+	left: 364px;
+	color: gray;
+	width: 24px;
+	text-align: right;
+}
+
+#hope_form_image_edit_image_name {
+	position: absolute;
+	width: 300px;
+	height: 18px;
+	top: 80px;
+	left: 70px;
+	font-size: 12px;
+	text-align: center;
+	overflow: hidden;
+	display: inline;
+}
+
+#hope_form_image_edit_ok {
+	position: absolute;
+	top: 185px;
+	left: 326px;
+}
+
+#hope_form_image_edit_cancel {
+	position: absolute;
+	top: 185px;
+	left: 260px;
+}
+
+#hope_form_image_box_upload_image_box {
+	position: absolute;
+	width: 100%;
+	height: 235px;
+	left: 0px;
+	bottom: 90px;
+/*	background-color: red;*/
+}
+
+#hope_form_image_box_upload_image_button {
+	top: 100px;
+/*	top: 150px;*/
+	left: 225.3px;
+/*	background-color: #088EAE;	*/
+/*	display: none;  */
+}
+
+#hope_form_upload_image_file {
+	width: 108px;
+	height: 37px;
+/*	cursor: pointer;*/
+	opacity: 0;
+}
+
+#hope_form_upload_image_iframe{
+	position: absolute;
+	left: -200;
+	top: -200;
+	cursor: pointer;
+	display: none;
+}
+
+#hope_form_upload_image_form {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	cursor: pointer;
+}
+
+#hope_form_image_uploading {
+	position: absolute;
+	left: 179.3px;
+	top: 0px;
+	width: 200px;
+	height: 100px;
+	display: none;
+}
+
+#hope_form_image_uploading_background {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	left: 68px;
+	background-image: url('/images/pictures_64x64.png');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/*#hope_form_image_uploading_background {
+	position: relative;
+	margin: auto;
+	line-height: 100%;
+}*/
+
+#hope_form_image_uploading_image_description_label {
+	position: absolute;
+	top: 99px;
+	left: -112px;
+	font-size: 12px;
+} 
+
+#hope_form_image_uploading_image_description {
+	position: absolute;
+	width: 300px;
+	height: 40px;
+	top: 100px;
+	left: -50px;
+/*	color: gray;*/
+	font-size: 8px;
+	font-size: 11px;
+/*	font-family:"Times New Roman",Georgia;	*/
+} 
+
+#hope_form_image_uploading_image_description_count {
+	position: absolute;
+	color: gray;  
+	font-size: 11px;
+	left: 234px;
+	top: 87px;
+	width: 22px;
+	text-align: right;
+}
+
+#hope_form_image_uploading_loading {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: 92px;
+	top: 24px;
+	display: none;
+}
+
+#hope_form_image_uploading_error {
+	position: absolute;
+	top: 50px;
+	width: 300px;
+	left: 129.3px;
+	text-align: center;
+	color: red;
+	font-size: 11px;
+	display: none;
+	display: inline;
+	word-break:break-all;
+}
+
+#hope_form_image_uploading_image_name {
+	position: absolute;
+	width: 100%;
+	height: 18px;
+	top: 70px;
+	font-size: 12px;
+	text-align: center;
+	overflow: hidden;
+	display: inline;
+}
+
+#hope_form_image_uploading_ok {
+	position: absolute;
+	top: 152px;
+	left: 194px;
+}
+
+#hope_form_image_uploading_cancel {
+	position: absolute;
+	top: 152px;
+	left: 130px;
+}
+
+#create_hope_success_box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+#create_hope_success_shielding {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.8;
+}
+
+#create_hope_success_message_box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#create_hope_success_message_alert {
+	position: relative;
+	margin: auto;
+/*	margin-top: 300px;*/
+	width: 400px;
+	height: 150px;
+	background-color: white;
+}
+
+#create_hope_success_title {
+	position: absolute;
+	top: 5px;
+	width: 200px;
+	left: 100px;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+/*	color: red;*/
+}
+
+#create_hope_success_message {
+	position: absolute;
+	left: 35px;
+	width: 330px;
+	height: 30px;
+	text-align: center;
+	top: 55px;
+	font-size: 14px;
+}
+
+#create_hope_success_message_ok {
+	position: absolute;
+	bottom: 5px;
+	right: 3px;
+}

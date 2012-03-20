@@ -1,0 +1,32 @@
+#user_home_box {
+	position: relative;
+	margin: auto;
+	width: 700px;
+	height: 100px;
+/*	background-color: red;*/
+	font-family: "Verdana", "Geneva", "New York";	
+}
+
+#user_home_menu {
+	position: relative;
+	float: left;
+/*	margin-right: 30px;*/
+}
+
+.user_home_func {
+	position: relative;
+	float: left;
+	cursor: pointer;
+	font-size: 14px;
+	margin-top: 12px;
+	margin-left: 10px;
+}
+
+.user_home_func_clicked {
+	color: gray;
+}
+
+#my_messages_text_wrap {
+	position: relative;
+	float: left;
+}

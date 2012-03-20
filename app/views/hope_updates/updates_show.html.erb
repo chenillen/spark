@@ -1,0 +1,78 @@
+<%= javascript_include_tag 'hope_update/updates_show' %>
+<%= stylesheet_link_tag "hope_update/updates_show_#{locale}" %>
+
+<div id="updates_show_box">
+	<a href="<%= url_for(@hope) %>" id="hope_title_for_update"><%= @hope.title %></a>
+	<div id="updates_show">
+		<% @hope_updates.each do |hope_update| %>
+			<div class="update_show">
+				<div class="update_show_body">
+					<% if hope_update.image_id 
+						image = @images_hash[hope_update.image_id]
+						image_size = perfect_mini(image[:mini_size].split("x"), 110)
+					%>
+						<a class="update_image" href=<%= image[:medium_url] %> style="margin-left: <%= (110 - image_size[0])/2.0 %>px;"><img src=<%= image[:mini_url] %> style="width: <%= image_size[0] %>px; height: <%= image_size[1] %>px;"/></a>
+						<span class="update_body" style="width: 582px;"><%= hope_update.body %></span>
+					<% else %>
+						<span class="update_body" style="width: 100%;"><%= hope_update.body %></span>					  
+					<% end %>
+				</div>
+				<div class="update_create_time"><%= spark_time_by_second(hope_update.created_at) %></div>
+			</div>
+		<% end %>
+	</div>
+	<% if @updates_count > 50 
+		page_count = (@updates_count/50.0).ceil
+	%>
+		<div id="my_updates_paging">
+			<% 
+				page_begin = @page - 2
+				page_end = @page + 2
+				if page_begin < 1
+					page_end += 1 - page_begin
+					page_end = (page_end > page_count)? page_count : page_end					
+					page_begin = 1
+				end
+				if page_end > page_count
+					page_begin = page_begin - (page_end - page_count)
+					page_begin = (page_begin < 1)? 1 : page_begin
+					page_end = page_count
+				end
+				
+				url = url_for(:controller => 'hopeUpdates', :action => 'show_hope_updates', :hope_id => @hope.id) + "&page="
+			 %>
+			
+			<% if @page < page_count %>
+				<a id="next_updates_page" class="sexybutton sexysimple sexyblue" href="<%= url + (@page + 1).to_s %>"><%= t('info.Next_page') %></a>
+			<% end  %>
+			
+			<span id="updates_page_numbers_box">
+				<% if page_begin > 2 %>
+					<a class="updates_page_number" href="<%= url + "1" %>">1</a>
+					<span class="updates_page_number" style="cursor: auto;">...</span>				
+				<% elsif page_begin == 2 %>
+					<a class="updates_page_number" href="<%= url + "1" %>">1</a>
+				<% end %>	
+				
+				<% for i in page_begin..page_end  %>
+					<% if i == @page %>
+						<a class="updates_page_number updates_current_page_number" href="<%= url + i.to_s %>"><%= i %></a>
+					<% else %>
+						<a class="updates_page_number" href="<%= url + i.to_s%>"><%= i %></a>
+					<% end %>
+				<% end %>
+				
+				<% if page_end < page_count - 1 %>
+					<span class="updates_page_number" style="cursor: auto;">...</span>
+					<a class="updates_page_number" href="<%= url + page_count.to_s %>"><%= page_count %></a>
+				<% elsif page_end == page_count - 1 %>
+				  	<a class="updates_page_number" href="<%= url + page_count.to_s %>"><%= page_count %></a>
+				<% end %>
+			</span>
+			
+			<% if @page > 1 %>
+				<a id="previous_updates_page" class="sexybutton sexysimple sexyblue" href="<%= url + (@page - 1).to_s %>"><%= t('info.Previous_page') %></a>
+			<% end %>
+		</div>
+	<% end %>
+</div>

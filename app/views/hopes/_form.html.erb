@@ -1,0 +1,121 @@
+<%= stylesheet_link_tag "hope/hope_form_#{locale}" %>
+
+<%= javascript_include_tag 'jquery.textchange', 'jquery.iframe-post-form', 'jquery.corner', 'hope/hope_form' %>
+
+<div id="hope_form_box">
+	<%= form_for(@hope, :html => {:multipart => true, :id => 'hope_form'}) do |f| %>
+		<div id="hope_form_title_assist">
+			<label for="hope_form_title" id='hope_form_title_label' class="hope_form_label"><%= Hope.human_attribute_name('title') %></label>
+			<div id="hope_form_title_error" class="hope_form_error"></div>
+			<div id="hope_form_title_count" class="hope_form_field_count" ><%= 30 - (@hope.title ? @hope.title.size : 0) %></div>
+			<div id="hope_form_title_prompt" class="hope_form_field_prompt">2~30</div>
+		</div>
+		<%= f.text_field :title, :size => 40, :id => 'hope_form_title', :value => @hope.title, :maxlength => 30 %>
+		<div id="hope_form_body_assist">
+			<label for="hope_form_body" id='hope_form_body_label' class="hope_form_label"><%= Hope.human_attribute_name('body') %></label>
+			<div id="hope_form_body_error" class="hope_form_error"></div>
+			<div id="hope_form_body_count" class="hope_form_field_count" ><%= 2000 - (@hope.body ? @hope.body.size : 0) %></div>		
+			<div id="hope_form_body_prompt" class="hope_form_field_prompt" >200~2000</div>
+		</div>
+		<%= f.text_area :body, :id => 'hope_form_body', :value => @hope.body, :maxlength => 2000 %>
+		<button id="hope_form_add_picture_button" type='button' class="sexybutton sexysimple sexyblue"><span class="add"><%= t('views.hope.add_pictures') %></span></button>		
+		<div id="hope_form_contact_assist">
+			<label for='hope_form_contact' id='hope_form_contact_label' class="hope_form_label"><%= Hope.human_attribute_name('contact') %></label>			
+			<div id="hope_form_contact_error" class="hope_form_error"></div>
+			<div id="hope_form_contact_count" class="hope_form_field_count" ><%= 300 - (@hope.contact ? @hope.contact.size : 0) %></div>		
+			<div id="hope_form_contact_prompt" class="hope_form_field_prompt" >0~300</div>
+		</div>
+		<%= f.text_area :contact, :id => 'hope_form_contact', :value => @hope.contact, :maxlength => 300 %>
+		<button type="submit" class='sexybutton sexysimple sexyblue sexylarge' id="hope_form_submit"><span class="ok"><%=t('views.hope.create_new_hope')%></span></button>
+	<% end %>
+	
+	<div id="hope_form_image_edit">
+		<div id="hope_form_image_edit_background"></div>
+		<div id="hope_form_image_edit_image_name"></div>
+		<div id="hope_form_image_edit_target_id"></div>
+		<label id="hope_form_image_edit_image_description_label" for="hope_form_image_edit_image_description"><%= t('views.hope.picture_description') %></label>
+		<textarea id="hope_form_image_edit_image_description" maxLength='140'></textarea> 
+		<div id="hope_form_image_edit_description_count">140</div>
+		<button type="button" id="hope_form_image_edit_ok" class="sexybutton sexysimple sexyblue sexysmall"><span class="ok"><%= t('info.Ok') %></span></button>
+		<button type="button" id="hope_form_image_edit_cancel" class="sexybutton sexysimple sexyred sexysmall"><span class="cancel"><%= t('info.Cancel') %></span></button>
+	</div>
+	
+	<div id="hope_form_image_box">
+		<div class="hope_form_uploaded_image" id="hope_form_uploaded_image_original" style="display: none;">
+			<img class="hope_form_uploaded_image_thum" />				
+			<img src='/images/remove_48x48.png' class="hope_form_uploaded_image_remove" title="<%= t('info.Delete') %>"/>
+			<div class="hope_form_uploaded_image_description"></div>
+			<input type="hidden" name="hope[image_ids][]" value='' class="hope_form_uploaded_image_id">
+			<div class="hope_form_uploaded_image_name"></div>
+		</div>
+		<div id="hope_form_uploaded_images_box">	          
+			<% @hope.image_ids.each_with_index do |image_id, index| 
+				image = HopeImage.find(image_id)     
+				if image
+					# mini the image to perfect size for thum show
+					thum_size = image.sizes['thum'].split('x').map{|x| x.to_f}
+					if thum_size[0] >= thum_size[1]
+						if thum_size[0] > 40
+							thum_size[1] *= 40.0/thum_size[0]
+							thum_size[0] = 40
+						end
+					else
+						if thum_size[1] > 40
+							thum_size[0] *= 40.0/thum_size[1]
+							thum_size[1] = 40
+						end
+					end
+					
+					thum_left = (40 - thum_size[0])/2.0	
+					thum_top = (40 - thum_size[1])/2.0 + 10 
+				%>
+					<div class="hope_form_uploaded_image" id=<%= 'hope_form_uploaded_image_' + image_id %> style="left:<%= (index*50).to_s + 'px' %>">
+						<img src=<%= image.image.url(:thum) %> class="hope_form_uploaded_image_thum" style= "width:<%= thum_size[0].to_s + 'px' %>; height:<%= thum_size[1].to_s + 'px' %>; top:<%= thum_top.to_s + 'px' %>; left:<%= thum_left.to_s + 'px' %>"/>
+						
+						<img src='/images/remove_48x48.png' class="hope_form_uploaded_image_remove" title="<%= t('info.Delete') %>" style="top: <%= (thum_top - 8).to_s + 'px' %>; left:<%= (thum_left + thum_size[0] - 8).to_s + 'px' %>;"/>
+						<div class="hope_form_uploaded_image_description"><%= (image.description || '') %></div>
+						<input type="hidden" name="hope[image_ids][]" value='<%= image_id %>' class="hope_form_uploaded_image_id">
+						<div class="hope_form_uploaded_image_name"><%= image.image_file_name %></div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+		<div id="hope_form_image_box_upload_image_box">
+			<div id="hope_form_image_uploading">
+				<div id="hope_form_image_uploading_background"></div>
+				<img id="hope_form_image_uploading_loading" src="/images/loading.gif"/>
+				<div id="hope_form_image_uploading_image_name" ></div>
+				<label id="hope_form_image_uploading_image_description_label" for="hope_form_image_uploading_image_description"><%= t('views.hope.picture_description') %></label>                        
+				<div id="hope_form_image_uploading_image_description_count">140</div>
+				<textarea id="hope_form_image_uploading_image_description" maxLength='140' ></textarea>
+				<button type="button" id="hope_form_image_uploading_ok" class="sexybutton sexysimple sexyblue sexysmall"><span class="ok"><%= t('info.Ok') %></span></button>
+				<button type="button" id="hope_form_image_uploading_cancel" class="sexybutton sexysimple sexyred sexysmall"><span class="cancel"><%= t('info.Cancel') %></span></button>
+			</div>
+			<div id="hope_form_image_uploading_error"></div>
+			<button type="button" id="hope_form_image_box_upload_image_button" class="sexybutton sexysimple sexylarge sexyblue">
+				<span class="upload"><%= t('views.hope.upload_picture') %></span>
+				<%= form_tag('/hopeImages', :method => 'post', :id => "hope_form_upload_image_form", :enctype =>"multipart/form-data") do %>
+					<input type="file" id="hope_form_upload_image_file" name="hope_image[image]" />
+					<input type="hidden" name="iframe_post" value="true" />
+				<% end %>
+			</button>
+		</div>
+		<button type="button" class="sexybutton sexysimple sexyred" id='hope_form_image_box_quit'><span class="cancel"><%= t('info.Exit') %></span></button>
+	</div>
+	
+	<iframe id="hope_form_upload_image_iframe">
+	</iframe>	
+</div>
+
+<div id="create_hope_success_box">
+	<div id="create_hope_success_shielding"></div>
+	<div id="create_hope_success_message_box">
+		<div id="create_hope_success_message_alert">
+			<div id="create_hope_success_title">
+				<%= t('info.Success') %>
+			</div>
+			<div id="create_hope_success_message"><%= t('views.hope.create_hope_success_message') %></div>
+			<button id="create_hope_success_message_ok" class="sexybutton sexyblue sexysimple"><%= t('info.Ok') %></button>
+		</div>
+	</div>
+</div>

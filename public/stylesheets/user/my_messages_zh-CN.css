@@ -1,0 +1,129 @@
+#my_messages_home {
+	position: relative;
+	margin: auto;
+	width: 700px;
+	margin-top: 34px;
+}
+
+#my_messages_show {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#autoload_messages_tools {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#loading_messages_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+#loading_messages_image {
+	position: relative;
+	float: left;
+	left: -50%;
+}
+
+#loading_messages_prompt {
+	position: relative;
+	float: left;
+	left: -50%;
+	color: gray;
+	font-size: 11px;
+	margin-left: 3px;
+}
+
+#retry_loading_messages_box {
+	position: relative;
+	float: left;
+	left: 50%;
+	display: none;
+}
+
+#retry_loading_messages_box span{
+	position: relative;
+	float: left;
+	left: -50%;
+	font-size: 11px;
+}
+
+.retry_loading_messages_prompt {
+	color: gray;
+}
+
+#retry_loading_messages_action {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#autoload_messages_mark {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 60px;
+}
+
+#my_message_show_box_original {
+	display: none;
+}
+
+.my_message_show_box {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 34px;
+}
+
+.update_show_box {
+	position: relative;
+	float: left;
+	width: 700px;
+/*	left: 20px;*/
+	margin-bottom: 8px;
+}
+
+.update_image {
+	position: relative;
+	float: left;
+}
+
+.update_body {
+	position: relative;
+	float: right;
+	font-size: 14px;
+	margin-top: -3px;
+/*	font-weight: bold;*/
+/*	color: gray;*/
+}
+
+.my_message_hope_title {
+	position: relative;
+	float: left;
+	width: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	font-size: 15px;
+/*	margin-bottom: 5px;*/
+}
+
+.my_message_updated_at {
+	position: relative;
+	float: left;
+/*	color: gray;*/
+	color: #4B4B4B;
+/*	color: #3E3E3E;*/
+/*	color: #505050;*/
+/*	margin-left: 6px;*/
+	font-size: 12px;
+/*	top: 4px;*/
+/*	margin-bottom: 0px;*/
+/*	display: none;*/
+}

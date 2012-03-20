@@ -1,0 +1,137 @@
+#my_comments_home {
+	position: relative;
+	width: 700px;
+	margin: auto;
+	margin-top: 34px;
+}
+
+#my_comments_show {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.my_comment_show {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 34px;
+}
+
+.comment_id {
+	display: none;
+}
+
+.comment_show_body {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.comment_image {
+	position: relative;
+	float: left;
+}
+
+.comment_body {
+	position: relative;
+	float: right;
+	font-size: 14px;
+	margin-top: -3px;
+}
+
+
+.comment_actions {
+	position: relative;
+	float: left;
+	width: 100%;
+	font-size: 12px;
+	color: #4B4B4B;
+/*	margin-bottom*/
+}
+
+.comment_create_time {
+	position: relative;
+	float: left;
+	font-size: 12px;
+/*	color: gray;*/
+/*	margin-bottom: 5px;*/
+}
+
+.comment_likes_split {
+	position: relative;
+	float: left;
+/*	display: none;*/
+/*	margin-top: -1px;*/
+	margin-left: 10px;
+}
+
+.comment_likes {
+	position: relative;
+	float: left;
+	margin-left: 10px;	
+}
+
+.comment_remove {
+	position: relative;
+	float: right;
+	cursor: pointer;
+	display: none;
+}
+
+.comment_for_hope_titile {
+	position: relative;
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+}
+
+#my_comments_paging {
+	margin-top: 34px;
+	position: relative;
+	float: right;
+	width: 100%;
+	margin-bottom: 100px;
+}
+
+#previous_comments_page {
+	position: relative;
+	float: right;
+}
+
+#next_comments_page {
+	position: relative;
+	float: right;
+}
+
+#comments_page_numbers_box {
+	position: relative;
+	float: right;
+	margin-left: 20px;
+	margin-top: 7px;
+/*	font-family: Times, 'Times New Roman', serif;*/
+/*	height: 20px;*/
+}
+
+.comments_page_number {
+	position: relative;
+	float: left;
+	margin-right: 20px;
+	cursor: pointer;
+	text-decoration: none;
+	color: gray;
+	font-size: 14px;
+/*	font-weight: normal;*/
+/*	margin-bottom: 0px;*/
+/*	vertical-align: bottom;*/
+}
+
+.comments_current_page_number {
+	margin-top: -13px;
+	font-size: 28px; 
+	font-weight: bold; 
+	color: black;
+}
