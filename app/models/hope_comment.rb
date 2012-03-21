@@ -37,18 +37,17 @@ class HopeComment
     def check_context
       check_image_id
       
-      if (self.image_id == nil && self.body == nil)
+      if (self.image_id.blank? && self.body.blank?)
         errors[:hope_comment] = I18n.t('errors.messages.can_not_be_empty')
       end
     end
     
-    def update_comments_count
-      comments_count = HopeComment.where(:hope_id => self.hope_id).count
-      hope = Hope.find(self.hope_id)      
-      hope.update_attribute(:comments, comments_count) if hope && (comments_count > -1) 
-    end
+    # def update_comments_count
+    #   comments_count = HopeComment.where(:hope_id => self.hope_id).count
+    #   hope = Hope.find(self.hope_id)      
+    #   hope.update_attribute(:comments, comments_count) if hope && (comments_count > -1) 
+    # end
     
-    # TODO: test me in controller test  
     def check_image_id
       unless self.image_id.blank?
         image = HopeCommentImage.find(self.image_id)

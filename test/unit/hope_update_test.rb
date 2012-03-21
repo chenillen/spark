@@ -51,6 +51,22 @@ class HopeUpdateTest < ActiveSupport::TestCase
     end
   end
   
+  test "update image should be exists" do
+    @hope_update.image_id = 12321321
+    assert @hope_update.valid?
+    assert_nil @hope_update.image_id
+  end
+  
+  test "update image should be create by the owner of update" do
+    update_image = HopeUpdateImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    update_image.user_id = @hope_update.user_id + '123'
+    assert update_image.save
+    
+    @hope_update.image_id = update_image.id.to_s
+    assert @hope_update.save
+    assert_nil @hope_update.image_id
+  end
+  
   test 'update image should be ok and destroyed after update destroyed' do
     update_image = HopeUpdateImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
     update_image.user_id = @hope_update.user_id

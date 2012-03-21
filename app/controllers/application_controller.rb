@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
         # To avoid token rush(a request doesn't go back yet and another request is coming).        
         # It is will always happen in the image uploading, the image is uploading and another request is coming that time.
         if rand(40) == 5
-          # puts "xxxxxxxxx---------------------------"
           new_token = Watchdog.new_token
           # update token
           if watchdog.update_attribute(:token, new_token)

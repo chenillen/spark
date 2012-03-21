@@ -10,7 +10,7 @@ class HopeFollow
   index [[:user_id, 1], [:created_at, -1]]
   
   attr_accessible :hope_id
-  validates_presence_of :user_id, :hope_id, :message => I18n.t('info.can_not_be_empty')
+  validates_presence_of :user_id, :hope_id, :message => I18n.t('errors.messages.can_not_be_empty')
   validate :check_user_follow_count
   
   after_create :update_follows_count

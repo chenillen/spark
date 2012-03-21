@@ -3,9 +3,9 @@ require 'test_helper'
 class HopeTest < ActiveSupport::TestCase
   
   def setup
-    Hope.delete_all
+    Hope.destroy_all
     @hope = Hope.new(:title => 'hello baby', :body => 'hello baby'*30, :contact => '@email')
-    @hope.user_id = 11
+    @hope.user_id = "eleven"
   end
   
   test "attr_accesible should be work" do
@@ -86,6 +86,30 @@ class HopeTest < ActiveSupport::TestCase
     
   end
   
+  test "image should be exists" do
+    HopeImage.destroy_all
+    
+    @hope.image_ids = [123, 324, 345]
+    assert @hope.valid?
+    puts @hope.image_ids
+    assert_equal 0, @hope.image_ids.size
+  end
+  
+  test "image should be create by the owner of hope" do
+    @hope.image_ids = []
+    for i in 1..Constant::MAX_HOPE_IMAGES
+      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+      hope_image.user_id = @hope.user_id + "huang"
+      assert hope_image.save
+      @hope.image_ids << hope_image.id.to_s
+    end
+    
+    assert_equal Constant::MAX_HOPE_IMAGES, @hope.image_ids.size
+    assert @hope.valid?
+    
+    assert_equal 0, @hope.image_ids.size
+  end
+  
   test 'image ids should be ok' do
     
     for i in 1..(Constant::MAX_HOPE_IMAGES + 1)
@@ -116,7 +140,7 @@ class HopeTest < ActiveSupport::TestCase
     
   end
   
-  test 'hope image should be deleted when hope was deleted' do
+  test 'hope image should be destroyed when hope was destroyed' do
     for i in 1..10
       hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
       hope_image.user_id = @hope.user_id
@@ -174,9 +198,14 @@ class HopeTest < ActiveSupport::TestCase
 
     hope = Hope.new(:title => @hope.title, :body => @hope.body)
     hope.user_id = @hope.user_id
-    assert_equal false, hope.save
-    
+    assert_equal false, hope.save 
     assert_equal I18n.t('errors.messages.you_can_only_create_count_hopes', :count => Constant::MAX_HOPES_PER_USER), hope.errors[:too_many_hopes].join('; ')
+    
+    # delete one then add one, it should be valid
+    Hope.first.destroy
+    hope = Hope.new(:title => @hope.title, :body => @hope.body)
+    hope.user_id = @hope.user_id
+    assert hope.valid?
   end
   
   test 'user id must be present' do

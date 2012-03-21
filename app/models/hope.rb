@@ -40,8 +40,7 @@ class Hope
     end
     
     def check_image_ids
-      # TODO: test me in controller test
-      return unless (self.image_ids && self.image_ids.size > 0)
+      return unless (!self.image_ids.blank? && self.image_ids.size > 0)
       
       self.image_ids.compact!
       self.image_ids.uniq!
@@ -50,22 +49,21 @@ class Hope
         errors[:image_ids] = I18n.t('errors.messages.too_many_pictures', :count => Constant::MAX_HOPE_IMAGES)
         return
       end
-
-      if self.image_ids.size > 0
-        self.image_ids.each_with_index do |image_id, index|
-          hope_image = HopeImage.find(image_id)
-          # image should be update by hope's owner
-          if hope_image && hope_image.user_id == self.user_id
-            if !hope_image.be_used && !hope_image.update_attribute(:be_used, true)
-              # if update failure, then delete it.
-              image_ids.delete_at(index)
-              logger.error "#update <HopeImage># id:#{image_id}:used:true failure"
-            end
+      
+      image_ids_temp = []
+      self.image_ids.each_with_index do |image_id, index|
+        hope_image = HopeImage.find(image_id)
+        # image should be add by hope's owner
+        if hope_image && hope_image.user_id == self.user_id
+          if hope_image.be_used || hope_image.update_attribute(:be_used, true)
+            image_ids_temp << image_id
           else
-            image_ids.delete_at(index)
+            logger.error "#update <HopeImage># id:#{image_id}:used:true failure"
           end
         end
       end
+      
+      self.image_ids = image_ids_temp
     end
     
     def destroy_images

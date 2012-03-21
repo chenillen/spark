@@ -1,10 +1,13 @@
-1. TODO: clear mongoid identity map at test with code 'Mongoid::IdentityMap.clear'.
+#TODO:
+1. clear mongoid identity map at test with code 'Mongoid::IdentityMap.clear'.
 	see [mongoid identity map](http://mongoid.org/docs/identity_map.html)
 
-2. TODO: strip all images resouce
+2. strip all images resouce
 
 3. Cache the js/css/image resource
 
 4. Add authentication to system
 
 5. conside to enhance uploaded image. see [magickwand](http://magickwand.rubyforge.org/api/wand/enhance-index.html)
+
+6. consider to treat the errors by system(such as can't find the id)

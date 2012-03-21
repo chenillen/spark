@@ -7,10 +7,11 @@ class Watchdog
   field :token, type: Integer
   field :remeber_me, type: Boolean, default: false
   
-  attr_accessible :user_id, :remeber_me
+  attr_accessible :remeber_me
   
   def self.new_dog(session, user_id, remeber_me)
-    dog = Watchdog.new(:user_id => user_id, :remeber_me => remeber_me)
+    dog = Watchdog.new(:remeber_me => remeber_me)
+    dog.user_id = user_id
     dog.token = self.new_token
     
     if dog.save

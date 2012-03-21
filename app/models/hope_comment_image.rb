@@ -4,7 +4,7 @@ class HopeCommentImage
   
   field :user_id, type: String
   field :sizes, type: Hash, default: {}
-  field :be_used, type: Boolean, defaults: false
+  field :be_used, type: Boolean, default: false
   has_mongoid_attached_file :image,
                             :hash_secret => "dakdmsadmkl3221mkdalsmdka21321dadsadale2132md",
                             :hash_data => ":class/:attachment/:id/:style/:updated_at",
