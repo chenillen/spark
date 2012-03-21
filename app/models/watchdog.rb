@@ -8,6 +8,8 @@ class Watchdog
   field :remeber_me, type: Boolean, default: false
   
   attr_accessible :remeber_me
+  validates_presence_of :user_id, :token,
+                        :message => I18n.t('errors.messages.can_not_be_empty')
   
   def self.new_dog(session, user_id, remeber_me)
     dog = Watchdog.new(:remeber_me => remeber_me)

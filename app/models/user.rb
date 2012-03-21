@@ -3,7 +3,7 @@ class User
   include Mongoid::Timestamps
   
   # sw for SinaWeibo
-  field :_id
+  field :_id, type: String
   # platform id
   field :pid
   field :platform
@@ -25,7 +25,8 @@ class User
   identity :type => String
   
   before_create :initial_new_messages_loaded_time
-  validates_presence_of :_id, :pid, :platform, :username, :user_url, :access_token
+  validates_presence_of :_id, :pid, :platform, :username, :user_url, :access_token,
+                        :message => I18n.t('errors.messages.can_not_be_empty')
   
   def self.safe_query
     without(:access_token)
