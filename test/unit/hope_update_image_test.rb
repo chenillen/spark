@@ -64,4 +64,7 @@ class HopeUpdateImageTest < ActiveSupport::TestCase
     assert_equal update_image.sizes.size, update_image.image.styles.size
   end
   
+  def teardown
+    HopeUpdateImage.destroy_all
+  end
 end

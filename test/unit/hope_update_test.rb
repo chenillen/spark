@@ -133,4 +133,7 @@ class HopeUpdateTest < ActiveSupport::TestCase
     end
   end
   
+  def teardown
+    HopeUpdateImage.destroy_all
+  end
 end

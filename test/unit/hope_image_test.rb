@@ -80,4 +80,8 @@ class HopeImageTest < ActiveSupport::TestCase
     assert hope_image.save
     assert_equal hope_image.sizes.size, hope_image.image.styles.size
   end
+  
+  def teardown
+    HopeImage.destroy_all
+  end
 end

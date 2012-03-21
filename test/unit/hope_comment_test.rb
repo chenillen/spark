@@ -107,4 +107,7 @@ class HopeCommentTest < ActiveSupport::TestCase
     assert_not_nil @hope_comment.created_at
   end
   
+  def teardown
+    HopeCommentImage.destroy_all
+  end
 end

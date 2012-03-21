@@ -214,4 +214,7 @@ class HopeTest < ActiveSupport::TestCase
     assert_equal I18n.t('errors.messages.can_not_be_empty'), @hope.errors[:user_id].join('; ')
   end
   
+  def teardown
+    HopeImage.destroy_all
+  end
 end
