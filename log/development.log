@@ -9822,3 +9822,154 @@ NameError (uninitialized constant Hope::ElevenHelper):
   Rendered /Users/Eleven/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.5ms)
   Rendered /Users/Eleven/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.4ms)
   Rendered /Users/Eleven/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.9ms)
+MONGODB [DEBUG] Logging level is currently :debug which could negatively impact client-side performance. You should set your logging level no lower than :info in production.
+MONGODB (0ms) admin['$cmd'].find({:ismaster=>1}).limit(-1)
+
+
+Started GET "/" for 127.0.0.1 at 2013-12-10 15:53:43 +0800
+Processing by IndexController#index as HTML
+  Rendered index/index.html.erb within layouts/application (582.2ms)
+Completed 200 OK in 620ms (Views: 619.7ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=0" for 127.0.0.1 at 2013-12-10 15:53:44 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"0"}
+Completed 500 Internal Server Error in 32ms
+
+NameError (uninitialized constant Hope::ElevenHelper):
+  app/models/hope.rb:4:in `<class:Hope>'
+  app/models/hope.rb:1:in `<top (required)>'
+  app/controllers/index_controller.rb:20:in `get_hopes'
+
+
+  Rendered /Users/Eleven/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (9.7ms)
+  Rendered /Users/Eleven/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.7ms)
+  Rendered /Users/Eleven/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (26.9ms)
+
+
+Started GET "/home?reading=new_messages_count" for 127.0.0.1 at 2013-12-10 15:53:46 +0800
+Processing by UserHomesController#index as JSON
+  Parameters: {"reading"=>"new_messages_count"}
+Filter chain halted as :authorize rendered or redirected
+Completed 200 OK in 1ms (Views: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-12-10 15:54:07 +0800
+Processing by IndexController#index as HTML
+  Rendered index/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 11ms (Views: 10.6ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=0" for 127.0.0.1 at 2013-12-10 15:54:07 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"0"}
+MONGODB (571ms) spark_development['system.namespaces'].find({})
+MONGODB [DEBUG] Cursor#close 5596833047434474013
+MONGODB (24ms) spark_development['hopes'].find({:finish=>false}).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 780ms (Views: 60.9ms)
+
+
+Started GET "/home?reading=new_messages_count" for 127.0.0.1 at 2013-12-10 15:54:09 +0800
+Processing by UserHomesController#index as JSON
+  Parameters: {"reading"=>"new_messages_count"}
+Filter chain halted as :authorize rendered or redirected
+Completed 200 OK in 1ms (Views: 0.2ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=25" for 127.0.0.1 at 2013-12-10 15:54:11 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"25"}
+MONGODB [DEBUG] Cursor#close 6048220666996441210
+MONGODB (5ms) spark_development['hopes'].find({:finish=>false}).skip(25).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 78ms (Views: 67.9ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=50" for 127.0.0.1 at 2013-12-10 15:54:13 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"50"}
+MONGODB [DEBUG] Cursor#close 1684473305156797849
+MONGODB (66ms) spark_development['hopes'].find({:finish=>false}).skip(50).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 134ms (Views: 65.5ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=75" for 127.0.0.1 at 2013-12-10 15:54:14 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"75"}
+MONGODB [DEBUG] Cursor#close 4400007347745835538
+MONGODB (2ms) spark_development['hopes'].find({:finish=>false}).skip(75).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 58ms (Views: 53.0ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=100" for 127.0.0.1 at 2013-12-10 15:54:15 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"100"}
+MONGODB [DEBUG] Cursor#close 7126602090763242610
+MONGODB (2ms) spark_development['hopes'].find({:finish=>false}).skip(100).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 60ms (Views: 55.1ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=125" for 127.0.0.1 at 2013-12-10 15:54:15 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"125"}
+MONGODB [DEBUG] Cursor#close 2105776628725436417
+MONGODB (4ms) spark_development['hopes'].find({:finish=>false}).skip(125).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 49ms (Views: 42.5ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=150" for 127.0.0.1 at 2013-12-10 15:54:16 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"150"}
+MONGODB [DEBUG] Cursor#close 1732202344709346081
+MONGODB (4ms) spark_development['hopes'].find({:finish=>false}).skip(150).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 54ms (Views: 47.3ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=175" for 127.0.0.1 at 2013-12-10 15:54:17 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"175"}
+MONGODB [DEBUG] Cursor#close 4176326962798647187
+MONGODB (54ms) spark_development['hopes'].find({:finish=>false}).skip(175).limit(25).sort([[:follows, -1]])
+MONGODB (20ms) spark_development['system.namespaces'].find({})
+MONGODB (106ms) spark_development['hope_images'].find({:_id=>{"$in"=>[BSON::ObjectId('4fac9fb8ee7ebe1c31000002'), BSON::ObjectId('4fad0c4bee7ebe6df1000002')]}})
+Completed 200 OK in 401ms (Views: 96.9ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=200" for 127.0.0.1 at 2013-12-10 15:54:19 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"200"}
+MONGODB [DEBUG] Cursor#close 1652031462959996192
+MONGODB (2ms) spark_development['hopes'].find({:finish=>false}).skip(200).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 63ms (Views: 57.3ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=225" for 127.0.0.1 at 2013-12-10 15:54:21 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"225"}
+MONGODB [DEBUG] Cursor#close 3319963913369412639
+MONGODB (2ms) spark_development['hopes'].find({:finish=>false}).skip(225).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 84ms (Views: 78.2ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=250" for 127.0.0.1 at 2013-12-10 15:54:21 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"250"}
+MONGODB [DEBUG] Cursor#close 6441999800022853708
+MONGODB (745ms) spark_development['hopes'].find({:finish=>false}).skip(250).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 794ms (Views: 46.2ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=275" for 127.0.0.1 at 2013-12-10 15:54:23 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"275"}
+MONGODB [DEBUG] Cursor#close 6772614734517628620
+MONGODB (3ms) spark_development['hopes'].find({:finish=>false}).skip(275).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 49ms (Views: 43.0ms)
+
+
+Started GET "/index/get_hopes?limit=25&skip=300" for 127.0.0.1 at 2013-12-10 15:54:24 +0800
+Processing by IndexController#get_hopes as JSON
+  Parameters: {"limit"=>"25", "skip"=>"300"}
+MONGODB [DEBUG] Cursor#close 1687522521483571536
+MONGODB (2ms) spark_development['hopes'].find({:finish=>false}).skip(300).limit(25).sort([[:follows, -1]])
+Completed 200 OK in 47ms (Views: 42.1ms)
