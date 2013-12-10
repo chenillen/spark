@@ -2,7 +2,7 @@
 	position: relative;
 	width: 700px;
 	margin: auto;
-	margin-top: 38px;	
+	margin-top: 32px;	
 }
 
 #my_creates_show {
@@ -19,6 +19,8 @@
 	position: relative;
 	float: left;
 	margin-bottom: 32px;
+	display: none;
+	width: 100%;
 }
 
 .hope_updates_box {
@@ -42,14 +44,25 @@
 
 .hope_update_textarea {
 	position: relative;
-	float: left;
-/*	margin-top: 10px;*/
-	width: 600px;
+	/*if set float:left, ie6 will show a position bug.*/
+	float: right;
+	_margin-right: 1px;
+	width: 604px;
+	_width: 599px;
+	+width: 600px;
+	width: 600px\0;
 	height: 70px;
 }
 
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	.hope_update_textarea {
+/*		height: 70px;*/
+		width: 600px;
+	}
+}
+
 #hope_update_show_original {
-	display: none;
+
 }
 
 .hope_update_show {
@@ -57,6 +70,7 @@
 	position: relative;
 	float: left;
 	width: 100%;
+	display: none;	
 }
 
 .hope_update_delete_action {
@@ -96,6 +110,12 @@
 	width: 100%;
 }
 
+.hope_update_assist {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
 .hope_update_image {
 	position: relative;
 	float: left;
@@ -107,6 +127,7 @@
 	float: right;
 /*	margin-right: 0px;*/
 	margin-top: -3px;
+	margin-top: -1px\0;
 	font-size: 13px;
 }
 
@@ -142,6 +163,7 @@
 	width: 24px;
 	height: 24px;
 	opacity: 0;
+	filter:Alpha(opacity=0)	
 }
 
 .hope_update_image_icon {
@@ -320,12 +342,19 @@
 	display: none;
 }
 
+.mc_assist {
+	position: relative;
+	float: left;	
+	width: 100%;	
+	+width: 700px;
+	margin-bottom: 5px;
+}
+
 .mc_time {
 	position: relative;
 	float: left;	
 /*	width: 100%;*/
 /*	margin-left: 20px;*/
-	margin-bottom: 5px;
 	font-size: 11px;
 	color: gray;
 /*	font-family: Times, 'Times New Roman', serif;*/

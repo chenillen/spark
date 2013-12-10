@@ -5,7 +5,6 @@
 	height: 750px;
 	margin: auto;
 	margin-top: 31px;
-/*	font-family: "Verdana", "Geneva", "New York", sans-serif;*/
 	font-family: Times, 'Times New Roman', serif;
 }
 
@@ -82,7 +81,7 @@ input {
 }
 
 #hope_form_body_assist {
-	width: 100%;
+	width: 110%;
 	height: 30px;
 	position: relative;
 	float: left;	
@@ -164,14 +163,15 @@ input {
 }
 
 #hope_form_image_box {
-	position: absolute;
+	position: relative;
+	margin: auto;
 	width: 558.6px;
 	height: 395px;
-	left: 23.7px;
-	top: 130px;
+	top: 200px;
 	background-color: white;
 	box-shadow: 5px, 5px, red;
-	display: none;
+/*	opacity: 1;*/
+/*	display: none;*/
 }
 
 #hope_form_image_box_quit {
@@ -228,15 +228,62 @@ input {
 	cursor: pointer;
 }
 
-#hope_form_image_edit {
+#hope_form_image_box_box {
 	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;	
+}
+
+#hope_form_image_box_shielding {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.6;
+	filter: Alpha(opacity=60);
+}
+
+#hope_form_image_box_body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#hope_form_image_edit_shielding {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.6;
+	filter: Alpha(opacity=60);
+	display: none;	
+}
+
+#hope_form_image_edit_body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+#hope_form_image_edit {
+	position: relative;
+	margin: auto;
 	width: 422px;
 	height: 230px;
 	background-color: white;
-	z-index: 301;
-	left: 92px;
-	top: 215px;
-	display: none;
+/*	z-index: 301;*/
+/*	left: 92px;*/
+	top: 285px;
 }
 
 #hope_form_image_edit_background {
@@ -264,11 +311,20 @@ input {
 
 #hope_form_image_edit_image_description {
 	position: absolute;
-	width: 300px;
-	height: 40px;
+	width: 304px;
+	height: 50px;
+	+width: 299px;
+	width: 299px\0;
 	top: 105px;
 	left: 82px;
 	font-size: 11px;
+}
+
+/*for webkit*/
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_edit_image_description {
+		width: 300px;
+	}	
 }
 
 #hope_form_image_edit_description_count {
@@ -276,6 +332,7 @@ input {
 	top: 92px;
 	font-size: 11px;
 	left: 364px;
+	left: 363px\9\0;
 	color: gray;
 	width: 24px;
 	text-align: right;
@@ -285,6 +342,8 @@ input {
 	position: absolute;
 	width: 300px;
 	height: 18px;
+	+height: 16px;
+	height: 16px\0;
 	top: 80px;
 	left: 70px;
 	font-size: 12px;
@@ -296,13 +355,41 @@ input {
 #hope_form_image_edit_ok {
 	position: absolute;
 	top: 185px;
-	left: 326px;
+	left: 324px;
+	left: 327px\0;	
+	+left: 327px;
+	_left: 326px;	
+}
+
+/* ie9*/
+:root #hope_form_image_edit_ok {
+	left: 329px\9;
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_edit_ok {
+		left: 326px;
+	}
 }
 
 #hope_form_image_edit_cancel {
 	position: absolute;
 	top: 185px;
-	left: 260px;
+	left: 256px;
+	left: 261px\0;
+	_left: 256px;
+	+left: 261px;
+}
+
+/* ie9 */
+:root #hope_form_image_edit_cancel {
+	left: 264px\9;		
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_edit_cancel {
+		left: 260px;
+	}
 }
 
 #hope_form_image_box_upload_image_box {
@@ -315,18 +402,31 @@ input {
 }
 
 #hope_form_image_box_upload_image_button {
+	position: absolute;
 	top: 100px;
-/*	top: 150px;*/
 	left: 225.3px;
-/*	background-color: #088EAE;	*/
-/*	display: none;  */
+	cursor: pointer;
+}
+
+#hope_form_image_box_upload_image_sexybutton {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#hope_form_upload_image_form {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
 }
 
 #hope_form_upload_image_file {
 	width: 108px;
 	height: 37px;
-/*	cursor: pointer;*/
 	opacity: 0;
+	filter: Alpha(opacity=0);
+	cursor: pointer;
 }
 
 #hope_form_upload_image_iframe{
@@ -378,24 +478,39 @@ input {
 
 #hope_form_image_uploading_image_description {
 	position: absolute;
-	width: 300px;
+	width: 304px;
+	+width: 299px;
+	width: 299px\0;
 	height: 40px;
 	top: 100px;
 	left: -50px;
-/*	color: gray;*/
 	font-size: 8px;
 	font-size: 11px;
-/*	font-family:"Times New Roman",Georgia;	*/
 } 
+
+/*for webkit*/
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_uploading_image_description {
+		width: 300px;
+	}	
+}
 
 #hope_form_image_uploading_image_description_count {
 	position: absolute;
 	color: gray;  
 	font-size: 11px;
 	left: 234px;
+	left: 233px\9\0;
 	top: 87px;
 	width: 22px;
 	text-align: right;
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_uploading_image_description_count {
+		left: 232px;
+		width: 24px;
+	}
 }
 
 #hope_form_image_uploading_loading {
@@ -423,7 +538,10 @@ input {
 #hope_form_image_uploading_image_name {
 	position: absolute;
 	width: 100%;
+	+width: 200px;
 	height: 18px;
+	+height: 16px;
+	height: 16px\0;
 	top: 70px;
 	font-size: 12px;
 	text-align: center;
@@ -434,13 +552,37 @@ input {
 #hope_form_image_uploading_ok {
 	position: absolute;
 	top: 152px;
-	left: 194px;
+	left: 193px;
+	left: 195px\0;
+	+left: 195px;
+}
+/* ie9 */
+:root #hope_form_image_uploading_ok {
+	left: 197px\9;
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_uploading_ok {
+		left: 194px;
+	}
 }
 
 #hope_form_image_uploading_cancel {
 	position: absolute;
 	top: 152px;
-	left: 130px;
+	left: 126px;
+	left: 129px\0;
+	+left: 129px;
+}
+
+:root #hope_form_image_uploading_cancel {
+	left: 133px\9;	
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hope_form_image_uploading_cancel {
+		left: 129px;
+	}	
 }
 
 #create_hope_success_box {

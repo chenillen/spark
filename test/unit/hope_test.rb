@@ -98,7 +98,7 @@ class HopeTest < ActiveSupport::TestCase
   test "image should be create by the owner of hope" do
     @hope.image_ids = []
     for i in 1..Constant::MAX_HOPE_IMAGES
-      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
       hope_image.user_id = @hope.user_id + "huang"
       assert hope_image.save
       @hope.image_ids << hope_image.id.to_s
@@ -113,7 +113,7 @@ class HopeTest < ActiveSupport::TestCase
   test 'image ids should be ok' do
     
     for i in 1..(Constant::MAX_HOPE_IMAGES + 1)
-      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
       hope_image.user_id = @hope.user_id
       assert hope_image.save
       assert_equal false, hope_image.be_used
@@ -142,7 +142,7 @@ class HopeTest < ActiveSupport::TestCase
   
   test 'hope image should be destroyed when hope was destroyed' do
     for i in 1..10
-      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+      hope_image = HopeImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
       hope_image.user_id = @hope.user_id
       assert hope_image.save
       @hope.image_ids << hope_image.id.to_s
@@ -200,7 +200,7 @@ class HopeTest < ActiveSupport::TestCase
     hope.user_id = @hope.user_id
     assert_equal false, hope.save 
     assert_equal I18n.t('errors.messages.you_can_only_create_count_hopes', :count => Constant::MAX_HOPES_PER_USER), hope.errors[:too_many_hopes].join('; ')
-    
+
     # delete one then add one, it should be valid
     Hope.first.destroy
     hope = Hope.new(:title => @hope.title, :body => @hope.body)

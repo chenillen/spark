@@ -76,7 +76,6 @@ class UserHomesController < ApplicationController
       else
         skip = 0
       end
-      # TODO: test whether the index work or not?
       hopes = Hope.where(:user_id => session[:user_id]).order_by([:created_at, -1]).limit(limit).skip(skip).without(:contact, :image_ids).to_a
       
       # puts "-----------------------"

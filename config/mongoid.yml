@@ -14,11 +14,11 @@ test:
 
 # set these environment variables on your prod server
 production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+  <<: *defaults
+  host: localhost
+  # username: eleven_spark
+  # password: spark_junhuangyi
+  database: spark_eleven_1584
   # slaves:
   #   - host: slave1.local
   #     port: 27018

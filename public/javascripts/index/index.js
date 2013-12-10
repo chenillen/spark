@@ -27,15 +27,28 @@ $(function() {
 	// 	return true;
 	// }
 	
+	function rand_num() {
+		var num = Math.random();
+		if (num < 0.15) {
+			return 1;
+		} else if (num < 0.7) {
+			return 3;
+		} else {
+			return 5;
+		};
+	}
+	
 	var $autoload_hopes_tools = $hopes_show.siblings('#autoload_hopes_tools');
+	var $hope_show_box_original = $('#hope_show_box_original');
 	var loading_hopes_complete = true;
+	var hopes_count = 0;
 	
 	function get_hopes(limit) {
 		var $window = $(window);
 		
 		hopes_limit = parseInt(($window.height() + $window.scrollTop() - $autoload_hopes_mark.offset().top)/89, 10) + 10;
 		limit = (limit > hopes_limit)? limit : hopes_limit;
-		skip = $hopes_show.children().length;
+		skip = hopes_count;
 		
 		$autoload_hopes_tools.children('#loading_hopes_box').show();
 		$autoload_hopes_tools.children('#retry_loading_hopes_box').hide();
@@ -51,8 +64,10 @@ $(function() {
 					
 					var hopes = response.hopes;
 					var images_hash = response.images_hash;
-					var $hope_show_box_original = $hopes_show.parent().siblings('#hope_show_box_original');	
-									
+					var rand_empty_num = rand_num();
+					var empty_num = 0;
+					
+					hopes_count += hopes.length;
 					for (var i=0; i < hopes.length; i++) {
 						var $hope_show_box_copy = $hope_show_box_original.clone(true, true);
 						// var $hope_body_show = $hope_show_box_copy.children('.hope_body_show');
@@ -68,10 +83,22 @@ $(function() {
 							
 							$hope_image.attr('src', image["mini_url"]);
 							$hope_image.css({'width' : size[0] + 'px', 'height' : size[1] + 'px', 'margin-left' : (119 - size[0])/2 + 'px', 'display' : 'block'});
-							
-							$hope_show_box_copy.children('.hope_body').width(573);							
+
+							$hope_show_box_copy.children('.hope_body').width(573);						
 						};
 						$hope_show_box_copy.children('.hope_body').text(hope.body.substr(0, 200) + '.....');
+						
+						if (empty_num == rand_empty_num - 1) {
+							$hope_show_box_copy.css('margin-bottom', '76px');
+							
+							empty_num = 0;
+							rand_empty_num = rand_num();
+						} else {
+							empty_num++;
+						};
+						// if (i == hopes.length - 1) {
+						// 	$hope_show_box_copy.css('margin-bottom', '76px');							
+						// };
 						
 						$hope_show_box_copy.attr('id', null);
 						$hope_show_box_copy.appendTo($hopes_show);

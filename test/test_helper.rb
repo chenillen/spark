@@ -1,11 +1,9 @@
-
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  include ActionDispatch::TestProcess
-  
+  include ActionDispatch::TestProcess  
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
@@ -13,5 +11,20 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  
+end
+
+class ActionController::TestCase
+  include ActionDispatch::TestProcess
+  
+  def login(user_id)
+    # login
+    assert Watchdog.new_dog(session, @user.id.to_s, false).valid?
+  end
+  
+  def logout
+    assert Watchdog.destroy_all
+  end
   
 end

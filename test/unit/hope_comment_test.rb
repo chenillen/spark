@@ -23,7 +23,7 @@ class HopeCommentTest < ActiveSupport::TestCase
   end
   
   test "image must be created by the owner of comment" do
-    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
     comment_image.user_id = @hope_comment.user_id + "123"
     
     @hope_comment.image_id = comment_image.id.to_s
@@ -43,7 +43,7 @@ class HopeCommentTest < ActiveSupport::TestCase
     
     # body is nil, then image_id must be present
     @hope_comment.body = nil
-    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
     comment_image.user_id = @hope_comment.user_id
     assert comment_image.save
     
@@ -60,7 +60,7 @@ class HopeCommentTest < ActiveSupport::TestCase
   end
   
   test "image's be_used must be updated to true" do
-    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
     comment_image.user_id = @hope_comment.user_id
     assert comment_image.save
     assert_equal false, comment_image.be_used
@@ -71,7 +71,7 @@ class HopeCommentTest < ActiveSupport::TestCase
   end
   
   test "image must be destroyed when comment destroy" do
-    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    comment_image = HopeCommentImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
     comment_image.user_id = @hope_comment.user_id
     assert comment_image.save
     

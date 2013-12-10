@@ -1,8 +1,12 @@
-module ApplicationHelper
+module ApplicationHelper  
   
   # TODO: testme
   def spark_time(time)
-    now = Time.now
+    Time.zone = ActiveSupport::TimeZone.new(Constant::TIMEZONE)   
+    
+    time = Time.at(time).in_time_zone
+    
+    now = Time.now.in_time_zone
     
     min = time.min
     sec = time.sec
@@ -11,7 +15,7 @@ module ApplicationHelper
     (sec = '0' + sec.to_s) if sec < 10
     
     res = time.month.to_s + '-' + time.day.to_s + ' ' + time.hour.to_s + ':' + min.to_s + ':' + sec.to_s
-    if time.year != Time.now.year
+    if time.year != now.year
       res = time.year.to_s + '-' + res
     end
     
@@ -19,6 +23,10 @@ module ApplicationHelper
   end
   
   def spark_time2(time)
+    Time.zone = ActiveSupport::TimeZone.new(Constant::TIMEZONE)        
+    
+    time = Time.at(time).in_time_zone
+    
     seconds = Time.now.to_i - time.to_i
     
     # less than 1 minute
@@ -42,15 +50,7 @@ module ApplicationHelper
       return spark_time(time)
     end
   end
-  
-  def spark_time_by_second(second) 
-    return spark_time(Time.at(second))
-  end
-  
-  def spark_time_by_second2(second)
-    return spark_time2(Time.at(second))
-  end
-  
+
   def perfect_mini(size, image_length)
     size = size.map{|length| length.to_f}
     

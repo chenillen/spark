@@ -1,14 +1,14 @@
 $(function() {
 	$('.update_image').fancybox({
 		openEffect: 'none',
-		closeEffect: 'none',
+		closeEffect: 'elastic',
 		type: 'image',
 		closeClick: true,
 		padding: 0,
 		closeBtn: false,
 		// closeSpeed: 'slow',
 		helpers : {
-			overlay : null
+ 			// overlay : null
 		},
 		// closeSpeed: 'normal',					
 		tpl: {

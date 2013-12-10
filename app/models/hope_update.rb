@@ -1,11 +1,13 @@
 class HopeUpdate
   include Mongoid::Document
+  # TODO: test the index is working or not
+  include ElevenHelper::Mongoid::Timestamps::CreatedAt
   
   field :user_id, type: String
   field :hope_id
   field :body, type: String
   field :image_id
-  field :created_at, type: Float
+  # field :created_at, type: Float
   field :top, type: Boolean, default: true
   
   index [[:hope_id, 1], [:top, 1], [:created_at, -1]]
@@ -13,7 +15,7 @@ class HopeUpdate
   attr_accessible :hope_id, :body, :image_id
   
   after_destroy :destroy_image, :change_top_status_after_destroy
-  before_create :add_create_time
+  # before_create :add_create_time
   after_create :change_top_status_after_save
   
   before_validation :strip_body
@@ -47,9 +49,9 @@ class HopeUpdate
       end
     end
     
-    def add_create_time
-      self.created_at = Time.now.to_f
-    end
+    # def add_create_time
+    #   self.created_at = Time.now.to_f
+    # end
     
     def destroy_image
       unless self.image_id.blank?

@@ -7,7 +7,8 @@ class HopeCommentLikesController < ApplicationController
         like = HopeCommentLike.where(:hope_comment_id => params[:hope_comment_id], :user_id => session[:user_id]).limit(1)
 
         if like.blank?
-          like = HopeCommentLike.new(:hope_comment_id => params[:hope_comment_id], :user_id => session[:user_id])
+          like = HopeCommentLike.new(:hope_comment_id => params[:hope_comment_id])
+          like.user_id = session[:user_id]
           if like.save  
             format.json {render :json => {:success => true}}
           else

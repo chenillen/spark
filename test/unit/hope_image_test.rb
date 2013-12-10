@@ -9,7 +9,7 @@ class HopeImageTest < ActiveSupport::TestCase
   end
   
   test "attr_accesible should be work" do
-    hope_image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + "hello.png"), :description => 'hello', :be_used => true, :user_id => "123")
+    hope_image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + "hello.png", 'image/png'), :description => 'hello', :be_used => true, :user_id => "123")
     
     assert_not_nil hope_image.description
     assert_nil hope_image.user_id
@@ -18,7 +18,7 @@ class HopeImageTest < ActiveSupport::TestCase
   
   test 'image too big' do
     # image too big
-    hope_image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + "heic1107a.jpg"))
+    hope_image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + "heic1107a.jpg", 'image/jpeg'))
     hope_image.user_id = 11
     assert hope_image.invalid?
     assert_equal I18n.t('errors.messages.image_too_big', :count => 5), hope_image.errors[:image_file_size].join('; ')
@@ -44,7 +44,7 @@ class HopeImageTest < ActiveSupport::TestCase
   
   test 'description too long' do
     # description too long
-    image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png'))
+    image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png', 'image/jpeg'))
     image.user_id = 11
     # 141 characters
     image.description = "hello baby"*14 + "h"
@@ -59,22 +59,23 @@ class HopeImageTest < ActiveSupport::TestCase
   end
   
   test "user id must be present" do
-    image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png'))
+    image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png', 'image/jpeg'))
     assert image.invalid?
     assert_equal I18n.t('errors.messages.can_not_be_empty'), image.errors[:user_id].join('; ')
   end
   
   test 'image should be create' do
     image_names = %w{788faf5fjw1dhlgn5a5d1j.jpg 7a87d45djw1dgk4n88dtnj.jpg ______.jpg Desert_Landscape.jpg heart.JPG hell.png hello.png helloyoucan_see_medadsadmksamdskadmksamdksa.jpg IMG_0379.png}
-    image_names.each do |image_name|
-      image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + image_name))
+    image_types = ['image/jpeg', 'image/jpeg', 'image/jpeg', 'image/jpeg', 'image/jpeg', 'image/png', 'image/png', 'image/jpeg', 'image/png']    
+    image_names.each_with_index do |image_name, index|
+      image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + image_name, image_types[index]))
       image.user_id = '11'
       assert image.valid?
     end
   end
   
   test "image sizes must be saved" do
-    hope_image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png'))
+    hope_image = HopeImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png', 'image/jpeg'))
     hope_image.user_id = "123"
     
     assert hope_image.save

@@ -16,7 +16,7 @@ module OpenPlatforms
                           'client_secret' => OPEN_PLATFORMS_CONFIG['sina_weibo']['client_secret'], 
                           'grant_type' => 'authorization_code',
                           'code' => request_code,
-                          'redirect_uri' => OPEN_PLATFORMS_CONFIG['sina_weibo']['register_url'])
+                          'redirect_uri' => OPEN_PLATFORMS_CONFIG['sina_weibo']['redirect_uri'])
         res = http.request req
       end
       

@@ -31,10 +31,9 @@ class HopesController < ApplicationController
       if hope
         if hope.user_id == session[:user_id]
           if hope.update_attributes(params[:hope])
-            # format.html {redirect_to :action => 'show'}
             format.json {render :json => {:success => true, :redirect_url => url_for(hope)}}
           else
-            format.json {render :json => {:success => false}}
+            format.json {render :json => {:success => false, :errors => hope.errors}}
           end
         else
           # format.html {redirect_to '/', :errors => [I18n.t('info.it_does_not_belong_to_you')]}            
@@ -69,13 +68,14 @@ class HopesController < ApplicationController
           hope_updates_images.each do |update_image|
             update_image_hash = {}
             update_image_hash[:mini_url] = update_image.image.url(:mini)
-            update_image_hash[:medium_url] = update_image.image.url(:medium)            
+            update_image_hash[:medium_url] = update_image.image.url(:medium) 
+            update_image_hash[:big_url] = update_image.image.url(:big)                        
             update_image_hash[:mini_size] = update_image.sizes["mini"]
             
             @updates_image_hash[update_image.id.to_s] = update_image_hash
           end
         end
-        
+           
         format.html
       else                                 
         format.html {redirect_to '/'}

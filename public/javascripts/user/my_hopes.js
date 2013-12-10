@@ -44,9 +44,9 @@ $(function() {
 						$my_create_hope_box_copy.children('.mc_hope_body').text(hope['body'].substring(0, 200) + '.....');
 						
 						// set timestamp
-						var $mc_time = $my_create_hope_box_copy.children('.mc_time');
-						var create_time = global_date_by_string(hope.created_at);
-						var update_time = global_date_by_string(hope.updated_at);
+						var $mc_time = $my_create_hope_box_copy.children('.mc_assist').children('.mc_time');
+						var create_time = global_date_by_second(hope.created_at);
+						var update_time = global_date_by_second(hope.updated_at);
 						
 						$mc_time.children('.mc_hope_created_at').text(create_time);
 						
@@ -62,7 +62,16 @@ $(function() {
 							$mc_time.siblings('.mc_hope_followers').text(tr('&1 followers', hope.follows)).css('display', 'block');
 						};
 						
+						// set hope finished or not
+						var $mc_finish = $my_create_hope_box_copy.children('.mc_action').children('.mc_finish');
+						if (hope.finish) {
+							$mc_finish.text(tr('Finished'));
+						} else {
+							$mc_finish.text(tr('Finish'));
+						};
+						
 						$my_create_hope_box_copy.appendTo($my_creates_show);
+						$my_create_hope_box_copy.show();
 					}
 					
 					if (hopes.length < limit) {
@@ -103,7 +112,6 @@ $(function() {
 		};
 	})
 	// $('.mc_hope_title').on('click', function(event) {
-	// 	// TODO: testme on ie and firefox
 	// 	window.location.href = '/hopes/' + $(this).siblings('.mc_hope_id').text();
 	// 	
 	// 	event.stopPropagation();
@@ -377,7 +385,7 @@ $(function() {
 		
 		
 		$hope_update_show_copy.children('.hope_update_id').text(hope_update['_id']);
-		$hope_update_show_copy.children('.hope_update_created_at').text(global_date_by_second(hope_update.created_at));
+		$hope_update_show_copy.children('.hope_update_assist').children('.hope_update_created_at').text(global_date_by_second(hope_update.created_at));
 		$hope_update_body.text(hope_update.body);
 		
 		if (hope_update.image_id) {
@@ -396,6 +404,8 @@ $(function() {
 		return $hope_update_show_copy;
 	}
 	
+	// ie6 bug. clone a node and change the attribute will change the original node attribute too.
+	var $hope_update_show_original = $('#hope_update_show_original');
 	$('.hope_update_add').on('click', function(event) {
 		
 		if (image_uploading) {
@@ -422,12 +432,14 @@ $(function() {
 						var hope_update = response.hope_update;
 						
 						var $hope_updates_show = $hope_update_textarea.siblings('.hope_updates_show');
-						var $hope_update_show_copy = create_hope_update_show(response.hope_update, response.image, $('#hope_update_show_original').clone(true, true));
+						var $hope_update_show_copy = create_hope_update_show(response.hope_update, response.image, $hope_update_show_original.clone(true, true));
 						var $hope_update_image_upload_box = $hope_update_image_id.siblings('.hope_update_image_upload_box');
 						
-						$hope_update_show_copy.css('display', 'none');
+						$hope_update_show_copy.hide();
+						
 						if ($hope_updates_show.children().length > 0) {
 							$hope_update_show_copy.insertBefore($hope_updates_show.children()[0]);
+							// $hope_update_show_copy.appendTo($hope_updates_show);							
 						} else {
 							$hope_update_show_copy.appendTo($hope_updates_show);
 						};
@@ -469,7 +481,6 @@ $(function() {
 			success: function(response) {
 				if (response.success) {
 					var $hope_updates_show = $hope_updates_loading_box.parent().siblings('.hope_updates_show');
-					var $hope_update_show_original = $('#hope_update_show_original');
 					var hope_updates = response.hope_updates;
 					var images_hash = response.images_hash;
 					
@@ -478,6 +489,7 @@ $(function() {
 						var $hope_update_show_copy = create_hope_update_show(hope_update, images_hash[hope_update.image_id], $hope_update_show_original.clone(true, true));
 						
 						$hope_update_show_copy.appendTo($hope_updates_show);						
+						$hope_update_show_copy.show();
 					};
 
 					$hope_updates_loading_box.hide();
@@ -539,13 +551,13 @@ $(function() {
 	
 	function delete_my_update($this) {
 		$.ajaxQueue({
-			url: '/hopeUpdates/' + $this.siblings('.hope_update_id').text(),
+			url: '/hopeUpdates/' + $this.parent().siblings('.hope_update_id').text(),
 			type: 'POST',
 			dataType: 'json',
 			data: {'_method' : 'DELETE'},
 			success: function(response) {
 				if (response.success) {
-					var $hope_update_show = $this.parent();
+					var $hope_update_show = $this.parent().parent();
 					$hope_update_show.slideUp().queue(function() {
 						$hope_update_show.remove();
 					});

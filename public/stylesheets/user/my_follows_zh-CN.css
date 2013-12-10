@@ -1,7 +1,7 @@
 #my_follows_home {
 	margin: auto;
 	width: 700px;
-	margin-top: 38px;	
+	margin-top: 32px;	
 }
 
 #my_follows_show {
@@ -68,7 +68,7 @@
 }
 
 #my_follow_box_original {
-	display: none;
+	display: none;	
 }
 
 .my_follow_box {
@@ -76,6 +76,8 @@
 	float: left;
 	margin-bottom: 32px;
 	width: 100%;
+	/*the better way is set the id:my_follow_box_original with display:none, but under ie6, the id attribute will be lost after jquery clone.*/
+	display: none;
 }
 
 .mf_hope_title {

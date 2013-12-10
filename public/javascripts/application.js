@@ -8,6 +8,11 @@
 //= require jquery_ujs
 //= require_tree .
 
+function get_browser_timezone() {
+	var d = new Date();
+	$.cookie('timezone', d.getTimezoneoffset);
+}
+
 // TODO: test it
 function convert_date_by_second(date_by_second) {
 	var date_now = new Date();
@@ -126,7 +131,16 @@ function global_date_by_second2(date_by_second) {
 }
 
 function global_date_by_string(date_string) {
-	var date = new Date(date_string);
+	var date = new Date(Date.parse(date_string));	
+	// alert(date_string)
+	// alert(Date.parse(date_string))
+	// if (!date) {
+		// alert('ie6')
+		// alert(date_string)
+		// alert(date_string)
+		// date = new Date(date_string.replace('-', '/'));
+		// alert(date)
+	// };
 	return convert_date2(date);
 }
 
@@ -178,6 +192,8 @@ $.valHooks.textarea = {
 
 // login fields and functions
 // var login_success, try_to_login, login_success_callback;
+
+var share_something;
 var user_login;
 $(function() {
 	
@@ -207,6 +223,9 @@ $(function() {
 	var $login_wall_shielding = $('#login_wall_shielding');
 	var $login_wall_exit = $login_wall_shielding.children('#login_wall_exit');
 	var $login_wall = $login_wall_shielding.children('#login_wall');
+	var $share_hope_shielding = $('#share_hope_shielding');
+	var $share_hope_exit = $share_hope_shielding.children('#share_hope_exit');
+	var $share_hope_box = $share_hope_shielding.children('#share_hope_box');
 	var $window = $(window);
 	
 	var get_new_messages_interval;
@@ -314,6 +333,11 @@ $(function() {
 		$login_wall_exit.css('top', $window.scrollTop() + 10 + 'px');
 	}
 	
+	function keep_share_box_position() {
+		$share_hope_box.css('margin-top',  $window.scrollTop() + $window.height()/2 - 160 + 'px');
+		$share_hope_exit.css('top', $window.scrollTop() + 10 + 'px');
+	}
+	
 	function get_browser_height() {
 		var document_height = $(document).height();
 		var window_height = $window.height();
@@ -325,20 +349,41 @@ $(function() {
 	// }
 	
 	$window.on('scroll', function(event) {
-		keep_login_wall_position();
-		// keep_home_bar_position()
+		if ($login_wall_shielding.is(':visible')) {
+			keep_login_wall_position();
+			$login_wall_shielding.height($(document).height());			
+		};
+		
+		if ($share_hope_shielding.is(':visible')) {
+			keep_share_box_position();	
+			$share_hope_shielding.height($(document).height());
+		};
 	});
-	
+
 	$window.on('resize', function() {
-		$login_wall_shielding.width($('body').width());
-		keep_login_wall_position();
+		if ($login_wall_shielding.is(':visible')) {
+			$login_wall_shielding.width($('body').width());
+			$login_wall_shielding.height($(document).height());			
+			
+			keep_login_wall_position();
+		};
+		
+		if ($share_hope_shielding.is(':visible')) {
+			$share_hope_shielding.width($('body').width());
+			$share_hope_shielding.height($(document).height());			
+			
+			keep_share_box_position();
+		};
+		
 		if ($(".shielding").is(":visible")) {
 			$('.shielding').width($('body').width());
 		};
 	});
 	
 	$login_wall_shielding.on('click', '#login_wall_exit', function() {
+		// $login_wall_shielding.appendTo($(document));
 		$login_wall_shielding.fadeOut();
+		// $('body').css('overflow', 'hidden');
 	});
 	
 	$login_wall.on('click', function(event) {
@@ -355,8 +400,68 @@ $(function() {
 									'fullscreen=no,width=600px,height=435px' + ",left=" + window_left + 'px' + ",top=" + window_top + 'px'); 
 			win.window.focus();
 		} else if (id === "tencent_weibo_login_icon") {
-			
+			var window_left = ($window.width() - 820)/2;
+			window_left = (window_left > 0)? window_left : 0;
+			var window_top = ($window.height() - 860)/2 + 20;
+			window_top = (window_top > 0)? window_top : 0;
+			// redirect_uri must set the full host path
+			var win = window.open('https://open.t.qq.com/cgi-bin/oauth2/authorize?client_id=801067714&response_type=code&redirect_uri=http://xiwangbang.com/login?platform=TencentWeibo', 
+									'login',
+									'fullscreen=no,width=820px,height=860px' + ",left=" + window_left + 'px' + ",top=" + window_top + 'px'); 
+			win.window.focus();
 		};
+		
+		event.stopPropagation();
+	});
+	
+	share_something = function(body, image_url) {
+		// clean old data
+		$.data(document.body, 'body', null);
+		$.data(document.body, 'image_url', null);
+		// set new data
+		$.data(document.body, 'body', body);
+		$.data(document.body, 'image_url', image_url);
+		
+		// open share box
+		$share_hope_shielding.css({'width' : $('body').width() + 'px', 'height' : get_browser_height()});
+		keep_share_box_position();
+		$share_hope_shielding.fadeIn();
+	}
+	
+	$('#share_sina_weibo_icon').on('click', function(event) {
+		var url = 'http://v.t.sina.com.cn/share/share.php?appkey=13450026&content=utf8&source=希望帮&sourceUrl=xiwangbang.com&url=' + window.location.href
+		
+		if ($.data(document.body, 'image_url') !== null || $.trim($.data(document.body, 'image_url')) !== '') {
+			url += '&pic=http://' + $.data(document.body, 'image_url');
+		};
+		
+		if ($(document.body, 'body')) {
+			url +='&title=' + $.data(document.body, 'body').substr(0, 120);
+		};
+		
+		window.open(encodeURI(url));
+		
+		event.stopPropagation();
+	});
+	
+	$('#share_tencent_weibo_icon').on('click', function(event) {
+		var url = 'http://share.v.t.qq.com/index.php?c=share&a=index&appkey=801067714&url=' + window.location.href
+		
+		if ($.data(document.body, 'image_url') !== null || $.trim($.data(document.body, 'image_url')) !== '') {
+			url += '&pic=http://' + $.data(document.body, 'image_url');
+		};
+		
+		if ($(document.body, 'body')) {
+			url +='&title=' + $.data(document.body, 'body').substr(0, 120);
+		};
+		
+		window.open(encodeURI(url));
+		
+		event.stopPropagation();
+	});
+	
+	$share_hope_exit.on('click', function(event) {
+		$share_hope_shielding.fadeOut();
 		
 		event.stopPropagation();
 	});
@@ -367,6 +472,10 @@ $(function() {
 			case 27:
 				if ($login_wall_shielding.is(":visible")) {
 					$login_wall_shielding.fadeOut();
+				};
+				
+				if ($share_hope_shielding.is(':visible')) {
+					$share_hope_shielding.fadeOut();
 				};
 			 	break;
 		};
@@ -448,6 +557,10 @@ $(function() {
 	}
 		
 	$('#logout').on('click', click_to_logout);
+	
+	function share_hope() {
+		
+	};
 	
 	set_user_bar();
 	set_new_messages_interval();

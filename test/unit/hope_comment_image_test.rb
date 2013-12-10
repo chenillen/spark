@@ -5,7 +5,7 @@ class HopeCommentImageTest < ActiveSupport::TestCase
   IMAGE_PATH = "test/fixtures/images/"
   
   test "attr_accessible should be work" do
-    image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + "hello.png"), :be_used => true, :user_id => "123")
+    image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + "hello.png", 'image/jpeg'), :be_used => true, :user_id => "123")
     
     assert_not_nil image.image
     assert_nil image.user_id
@@ -14,7 +14,7 @@ class HopeCommentImageTest < ActiveSupport::TestCase
   
   test 'image too big' do
     # image too big
-    hope_comment_image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + "heic1107a.jpg"));
+    hope_comment_image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + "heic1107a.jpg", 'image/jpeg'));
     hope_comment_image.user_id = 11
     assert hope_comment_image.invalid?
     assert_equal I18n.t('errors.messages.image_too_big', :count => 5), hope_comment_image.errors[:image_file_size].join('; ')
@@ -45,15 +45,17 @@ class HopeCommentImageTest < ActiveSupport::TestCase
   
   test 'image should be create' do
     image_names = %w{788faf5fjw1dhlgn5a5d1j.jpg 7a87d45djw1dgk4n88dtnj.jpg ______.jpg Desert_Landscape.jpg heart.JPG hell.png hello.png helloyoucan_see_medadsadmksamdskadmksamdksa.jpg IMG_0379.png}
-    image_names.each do |image_name|
-      image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + image_name))
+    image_types = ['image/jpeg', 'image/jpeg', 'image/jpeg', 'image/jpeg', 'image/jpeg', 'image/png', 'image/png', 'image/jpeg', 'image/png']
+    image_names.each_with_index do |image_name, index|
+      image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + image_name, image_types[index]))
       image.user_id = '11'
+      
       assert image.valid?
     end
   end
   
   test "image sizes must be saved" do
-    comment_image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png'))
+    comment_image = HopeCommentImage.new(:image => fixture_file_upload(IMAGE_PATH + 'hello.png', 'image/png'))
     comment_image.user_id = "123"
     
     assert comment_image.save

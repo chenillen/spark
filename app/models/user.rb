@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  include Mongoid::Timestamps
+  include ElevenHelper::Mongoid::Timestamps
   
   # sw for SinaWeibo
   field :_id, type: String
@@ -34,6 +34,8 @@ class User
   
   private
     def initial_new_messages_loaded_time
-      self.new_messages_loaded_time = Time.now.to_f
+      # TODO: change me to Time.now.to_f after show for angles
+      # self.new_messages_loaded_time = Time.now.to_f
+      self.new_messages_loaded_time = 0      
     end
 end

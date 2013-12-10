@@ -71,7 +71,8 @@
       :Next_page => 'Next page',
       :Previous_page => 'Previous page',
       :count_people_like_this => "%{count} people like this",
-      :Contacts => 'Contacts'      
+      :Contacts => 'Contacts',
+      :Share_to => 'Share to'
     },
     :date => {
       :count_seconds_ago => {

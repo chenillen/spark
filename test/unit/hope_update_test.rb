@@ -58,7 +58,7 @@ class HopeUpdateTest < ActiveSupport::TestCase
   end
   
   test "update image should be create by the owner of update" do
-    update_image = HopeUpdateImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    update_image = HopeUpdateImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
     update_image.user_id = @hope_update.user_id + '123'
     assert update_image.save
     
@@ -68,7 +68,7 @@ class HopeUpdateTest < ActiveSupport::TestCase
   end
   
   test 'update image should be ok and destroyed after update destroyed' do
-    update_image = HopeUpdateImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG"))
+    update_image = HopeUpdateImage.new(:image => fixture_file_upload("test/fixtures/images/heart.JPG", 'image/jpeg'))
     update_image.user_id = @hope_update.user_id
     assert update_image.save
     assert_equal false, update_image.be_used

@@ -1,7 +1,7 @@
 class Hope
   
   include Mongoid::Document
-  include Mongoid::Timestamps
+  include ElevenHelper::Mongoid::Timestamps
 
   field :user_id, type: String
   field :title, type: String
@@ -17,9 +17,10 @@ class Hope
   attr_accessible :title, :body, :contact, :image_ids
   
   before_validation :strip_fields
-  after_destroy :destroy_images, :destroy_updates, :destroy_follows
+  after_destroy :destroy_images, :destroy_updates, :destroy_follows 
   
-  validate :check_image_ids, :check_user_hope_count
+  validate :check_image_ids
+  validate :check_user_hope_count, :on => :create
   validates_presence_of :user_id,
                         :message => I18n.t('errors.messages.can_not_be_empty')
   validates_length_of :title,

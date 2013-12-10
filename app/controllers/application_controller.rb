@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_locale, :authorize
   protect_from_forgery
-
+  
   def set_locale
     I18n.locale = request.preferred_language_from([:'zh-CN'])
   end
@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
       if watchdog_timeout?(watchdog)
         watchdog.delete
         need_login()
-      # everything is ok. 
+      # everything is ok.
       elsif session[:token] == watchdog.token
         # To avoid token rush(a request doesn't go back yet and another request is coming).        
         # It is will always happen in the image uploading, the image is uploading and another request is coming that time.
-        if rand(40) == 5
+        if rand(100) == 5
           new_token = Watchdog.new_token
           # update token
           if watchdog.update_attribute(:token, new_token)
@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
     
     def watchdog_timeout?(watchdog)
       if watchdog.remeber_me
-        return true if (Time.now - watchdog.updated_at) > Constant::REMEMBER_ME_TIME
+        return true if (Time.now.to_f - watchdog.updated_at) > Constant::REMEMBER_ME_TIME
       else
-        return true if (Time.now - watchdog.updated_at) > Constant::LOGIN_EXPIRES_TIME
+        return true if (Time.now.to_f - watchdog.updated_at) > Constant::LOGIN_EXPIRES_TIME
       end
       
       return false

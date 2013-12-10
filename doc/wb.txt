@@ -5,3 +5,7 @@ App Secret：29f6df4ae62fa587264dc2799a484f45
 #qq
 App Key： 801067714
 App Secret： 42ad1d6476e3b16e6fce4af9afceadaa
+
+#renren
+API Key：b6c8954709d24aa8901a4b68c9536f37
+Secret Key：d59d8b38de0e4f4e8d62a3c16369ac34

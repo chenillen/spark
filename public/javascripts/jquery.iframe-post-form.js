@@ -7,7 +7,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * @author: Ewen Elder <ewen at jainaewen dot com> <glomainn at yahoo dot co dot uk>
+ * @author: Ewen Elder <ewen@jainaewen.com> <glomainn@yahoo.co.uk>
  * @version: 1.1.1 (2011-07-29)
 **/
 (function ($)

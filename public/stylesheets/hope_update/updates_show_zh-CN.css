@@ -2,7 +2,7 @@
 	position: relative;
 	width: 700px;
 	margin: auto;
-	margin-top: 34px;
+	margin-top: 39px;
 }
 
 #hope_title_for_update {
@@ -46,6 +46,7 @@
 	position: relative;
 	float: right;
 	margin-top: -3px;
+	margin-top: -1px\0;	
 }
 
 .update_create_time {

@@ -16,7 +16,6 @@ class WatchdogsController < ApplicationController
   
   def create
     respond_to do |format|      
-      # TODO: add other platforms
       if params['platform'] == 'SinaWeibo'
         user = login_with_sina_weibo()
         if user                    
@@ -27,6 +26,17 @@ class WatchdogsController < ApplicationController
         else
           format.html {render :login_failure}
         end
+      elsif params['platform'] == 'TencentWeibo'
+        user = login_with_tencent_weibo()
+        if user                    
+          cookies[:expires_time] = Time.now.to_i + Constant::LOGIN_EXPIRES_TIME
+          cookies[:username], cookies[:pid], cookies[:avatar_url], cookies[:avatar_size] = user.username, user.pid, user.avatar_url, user.avatar_size
+          
+          format.html {render :login_success}
+        else
+          format.html {render :login_failure}
+        end
+        
       else
         format.html {render :login_failure}        
       end
@@ -49,7 +59,7 @@ class WatchdogsController < ApplicationController
       res = OpenPlatforms::SinaWeibo.authenticate(params['code'])
       
       if res['uid'] && res['access_token']
-        user_info = OpenPlatforms::SinaWeibo.get_user_info(res['access_token'], res['uid'])
+        return nil unless (user_info = OpenPlatforms::SinaWeibo.get_user_info(res['access_token'], res['uid']))
         user_id = 'sw' + res['uid']
         
         watchdog = Watchdog.new_dog(session, user_id, false)
@@ -76,6 +86,37 @@ class WatchdogsController < ApplicationController
       end
     end
     
+    def login_with_tencent_weibo
+      res = OpenPlatforms::TencentWeibo.authenticate(params['code'])
+
+      if res['access_token']
+        return nil unless (user_info = OpenPlatforms::TencentWeibo.get_user_info(res['access_token'], params['openid'], params['openkey']))
+        
+        user_id = 'tw' + params['openid']
+        
+        watchdog = Watchdog.new_dog(session, user_id, false)
+        
+        return nil unless (user = User.find_or_create_by(:_id => user_id))
+        if user.update_attributes(:platform => 'TencentWeibo', 
+                                :username => user_info['nick'], :pid => user_info['openid'],
+                                :user_url => 'http://t.qq.com/' + (user_info['name'] || ''), 
+                                :avatar_url => user_info['head'] + "/50",
+                                :large_avatar_url => user_info['head'] + '/100',
+                                :description => user_info['introduction'],
+                                :verified => user_info['isvip'],
+                                :verified_reason => user_info['verifyinfo'],
+                                :access_token => res['access_token'])
+
+          return user
+        else
+          return nil
+        end  
+      else
+        return nil
+      end
+      
+    end
+    
     def reset_user_info
       cookies.delete :username
       cookies.delete :pid
@@ -83,5 +124,5 @@ class WatchdogsController < ApplicationController
       cookies.delete :avatar_size
       cookies.delete :expires_time
     end
-  
+
 end

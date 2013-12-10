@@ -1,6 +1,7 @@
 class HopeFollow
   include Mongoid::Document
-  include Mongoid::Timestamps::Created
+  # TODO: test the index is working or not
+  include ElevenHelper::Mongoid::Timestamps::CreatedAt
   
   field :user_id, type: String
   field :hope_id
@@ -11,7 +12,7 @@ class HopeFollow
   
   attr_accessible :hope_id
   validates_presence_of :user_id, :hope_id, :message => I18n.t('errors.messages.can_not_be_empty')
-  validate :check_user_follow_count
+  validate :check_user_follow_count, :on => :create
   
   after_create :update_follows_count
   after_destroy :update_follows_count

@@ -11,8 +11,7 @@
 			<div class="my_comment_show">
 				<div class="comment_id"><%= comment.id %></div>
 				<div class="comment_show_body">
-					<% if comment.image_id
-						image = @images_hash[comment.image_id]
+					<% if comment.image_id && (image = @images_hash[comment.image_id])
 						size = perfect_mini(image[:sizes]['mini'].split("x"), 110)
 					%>
 						<a class="comment_image" href="<%= image[:medium_url] %>" style="left: <%= (110 - size[0])/2.0 %>px;"><img class="comment_image" style="width: <%= size[0] %>px; height: <%= size[1] %>px;" src=<%= image[:mini_url] %>/></a>
@@ -22,7 +21,7 @@
 					<% end %>
 				</div>
 				<div class="comment_actions">
-					<span class="comment_create_time"><%= spark_time_by_second(comment.created_at) %></span>
+					<span class="comment_create_time"><%= spark_time(comment.created_at) %></span>
 					<% if comment.likes > 0 %>
 						<span class="comment_likes_split">|</span>
 						<span class="comment_likes"><%= t('info.count_people_like_this', :count => comment.likes) %></span>						

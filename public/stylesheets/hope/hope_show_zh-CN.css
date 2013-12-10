@@ -4,7 +4,7 @@
 	margin: auto;
 	width: 700px;
 	font-size: 15px;
-	font-family: "Verdana", "Geneva", "New York";
+	font-family: "Verdana", "Geneva", "sans-serif";
 }
 
 #hw_image_show {   
@@ -12,8 +12,6 @@
 	float: left;
 	width: 100%;
 	margin-top: 40px;
-/*	margin-bottom: 40px;*/
-/*	margin-top: 30px;*/
 }
 
 #hw_image {
@@ -39,7 +37,6 @@
 	height: 60px;
 	top: 360px;
 	left: 5px;
-/*	cursor: pointer;*/
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
@@ -57,6 +54,7 @@
 	top: 0px;
 	background-color: black;
 	opacity: 0.6;
+	filter: Alpha(opacity=60);
 }
 
 .hw_image_thum_box {
@@ -68,7 +66,6 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;
-/*	border: 1px solid blue;*/
 }
 
 .hw_image_thum {
@@ -79,7 +76,6 @@
 	height: 60px;
 	background-repeat: no-repeat;
 	background-position: center;
-/*	border: 1px solid blue;*/
 }
 
 .hw_image_thum_index {
@@ -95,14 +91,9 @@
 	width: 100%;
 	margin: auto; 
 	font-size: 32px;
-	margin-top: 40px;
-/*	margin-bottom: 30px;*/
+	margin-top: 39px;
 	text-align: center;                                                      
-/*	color: red;*/
-/*	font-family: "New York", Times;*/
 	font-weight: bold;
-/*	letter-spacing: 3px;*/
-/*	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;*/
 }  
 
 /*#hw_create_info {
@@ -120,9 +111,10 @@
 	margin-top: 40px;
 	display: block;
 	white-space: pre-wrap;
+	word-wrap: break-word;	
+	-white-space: pre;
+	+white-space: pre;	
 	font-size: 15px;
-/*	text-indent: 2em;*/
-/*	letter-spacing: 0.5px;*/
 }
 
 #hw_contact_prompt {
@@ -131,6 +123,7 @@
 	width: 100%;
 	/*one line height*/
 	margin-top: 19px;
+/*	margin-bottom: 19px;*/
 /*	font-size: 15px;*/
 /*	margin-bottom: 5px;*/
 	white-space: pre-wrap;	
@@ -270,8 +263,10 @@
 	float: left;
 	width: 100%;
 	height: 1px;
-/*	border: 1px solid gray;*/
+	display: inline;
 	background-color: black;
+	/*for ie6*/
+	font-size: 0px;
 }
 
 .hw_update_show {
@@ -301,11 +296,17 @@
 	float: left;
 }
 
+.hw_update_big_image_url {
+	display: none;
+}
+
 .hw_update_body {
 	position: relative;
 	float: right;
 	font-size: 15px;
 	margin-top: -3px;
+	margin-top: -3px\9;	
+	margin-top: -1px\0;
 /*	line-height: 16px;*/
 /*	letter-spacing: 0.9px;*/
 /*	font-size: 13px;*/
@@ -343,17 +344,14 @@
 .hw_update_share_action {
 	position: relative;
 	float: left;
-/*	font-size: 11px;*/
 	font-weight: bold;
-/*	margin-right: 10px;	*/
 	cursor: pointer;
-/*	color: #2D66B1;*/
 }
 
 #hw_new_comment_box {
 	position: relative;
 	margin: auto;
-	margin-top: 19px;
+	margin-top: 38px;
 	width: 700px;
 	height: 100px;
 	float: left;
@@ -363,6 +361,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
+	right: 1px\9\0;
 	text-align: right;
 	color: gray;
 	font-size: 11px;
@@ -370,17 +369,33 @@
 
 #hw_new_comment {
 	position: absolute;
+	float: left;
 	top: 13px;
-	width: 694px;
-	height: 70px;
+	width: 698px;
+	height: 73px;	
+	_width: 693px;
+	_height: 71px;
+	+width: 693px;
+	+height: 70px;
+	width: 693px\0;
+	height: 69px\0;
 	color: gray;
 	font-size: 11px;
-/*	border: 1px solid #83A1FF;*/
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) {
+	#hw_new_comment {
+		height: 70px;
+		width: 694px;
+	}
+	
 }
 
 #hw_add_comment {
 	position: absolute;
 	right: 0px;
+	right: 1px\0;
+	*right: 1px;
 	top: 92px;
 }
 
@@ -408,6 +423,7 @@
 	width: 22px;
 	height: 22px;
 	top: 0;
+	border: 0;
 	cursor: pointer;
 }
 
@@ -418,6 +434,12 @@
 	top: 4.5px;
 	color: gray;
 /*	display: none;*/
+}
+
+#hw_add_commnet_image_form {
+/*	width: 100px;*/
+/*	float: right;*/
+/*	z-index: 1000;*/
 }
 
 #uploaded_comment_image_box {
@@ -459,8 +481,14 @@
 }
 
 #hw_comment_add_file {
-/*	position: absolute;*/
+	width: 40px;
+/*	height: 40px;*/
+/*	left: 0;*/
+	position: absolute;
+	left: 0;
 	opacity: 0;
+	/*for ie6*/
+	filter:Alpha(opacity=0)
 }
 
 #hope_image_slide_show_box {
@@ -554,7 +582,7 @@
 	position: relative;
 	width: 700px;
 	float: left;
-	margin-bottom: 17px;
+	margin-bottom: 34px;
 }
 
 .hope_avatar {
@@ -604,17 +632,29 @@
 	position: relative;
 	float: left;
 	margin-top: 0;
-	cursor: pointer;	
+	cursor: pointer;
 }
 
 .hope_comment_body {
-/*	position: relative;*/
+	position: relative;
 	float: right;
-	margin-right: 0px;
+/*margin: auto;*/
+/*	margin-right: 0px;*/
 	margin-top: -3px;
+	margin-top: 0px\0;
 	font-size: 14px;
 	text-align: left;
-/*	vertical-align:text-top;	*/
+/*overflow: hidden; white-space: nowrap;	*/
+/*	display: block;*/
+/*	width: 500px;*/
+/*	overflow:auto;*/
+/*	white-space: -moz-pre-wrap;	*/
+/*	white-space: pre-wrap;*/
+/*	display: block;	*/
+/*	white-space: -moz-pre-wrap;*/
+/*	word-wrap:break-word;	*/
+/*	word-break:normal;	*/
+/*	word-break:break-all;*/
 }
 
 .hope_tools {
@@ -760,6 +800,8 @@
 	margin-top: 10px;
 	float: left;
 	opacity: 0;
+	filter:Alpha(opacity=0)
+	
 /*	display: none;*/
 }
 

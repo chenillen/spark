@@ -1,13 +1,13 @@
 class HopeComment
   include Mongoid::Document
   include Mongoid::Paperclip
+  include ElevenHelper::Mongoid::Timestamps::CreatedAt
   
   field :user_id, type: String
   field :body, type: String
   field :hope_id
   field :image_id
   field :likes, type: Integer, default: 0
-  field :created_at, type: Float
   
   attr_accessible :body, :hope_id, :image_id
   
@@ -15,21 +15,18 @@ class HopeComment
   index [[:hope_id, 1], [:likes, -1]]
   
   before_validation :strip_fields
-  before_create :add_create_time
+  # before_create :add_create_time
   after_destroy :destroy_image
   
-  validate :check_context, :check_user_comments_count
+  validate :check_context
+  validate :check_user_comments_count, :on => :create
   validates_presence_of :user_id, :hope_id,
                         :message => I18n.t('errors.messages.can_not_be_empty')
   validates_length_of :body, 
                       :maximum => 300,
                       :message => I18n.t('errors.messages.too_long', :count => 300)
   private
-    
-    def add_create_time
-      self.created_at = Time.now.to_f
-    end
-    
+        
     def strip_fields
       self.body.strip! if self.body
     end

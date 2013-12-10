@@ -49,14 +49,14 @@ $(function() {
 	// set update image fancybox
 	$('.hw_update_image').fancybox({
 		openEffect: 'none',
-		closeEffect: 'none',
+		closeEffect: 'elastic',
 		type: 'image',
 		closeClick: true,
 		padding: 0,
 		closeBtn: false,
 		// closeSpeed: 'slow',
 		helpers : {
-			overlay : null
+			// overlay : null
 		},
 		// closeSpeed: 'normal',					
 		tpl: {
@@ -146,7 +146,10 @@ $(function() {
 			$hw_image_thum_shielding.fadeOut('fast').queue(function() {
 				var shielding_left = parseFloat($hw_image_thums.css('left')) + 70*index + 'px';
 				$hw_image_thum_shielding.css('left', shielding_left).dequeue();
-			}).fadeIn('fast');
+			}).fadeIn('fast').queue(function() {
+				// ie6 opacity bug
+				$hw_image_thum_shielding.css('filter', 'Alpha(opacity=60)').dequeue();
+			});
 
 			$hw_image.css({'top': image_top + 'px', 'left' : image_left + 'px', 'width' : size[0] + 'px', 'height' : size[1] + 'px'}); 
 			$hw_image.fadeIn('slow');
@@ -207,6 +210,7 @@ $(function() {
 				type: 'image',
 				prevEffect: 'none',
 				nextEffect: 'none',
+				closeEffect: 'elastic',
 				// closeSpeed: 'slow',
 				// loop: false,
 				helpers: { 
@@ -708,14 +712,14 @@ $(function() {
 	// set fancybox show	
 	$('.hope_comment_image').fancybox({
 		openEffect: 'none',
-		closeEffect: 'none',
+		closeEffect: 'elastic',
 		type: 'image',
 		closeClick: true,
 		padding: 0,
 		closeBtn: false,
 		// closeSpeed: 'slow',
 		helpers : {
-			overlay : null
+			// overlay : null
 		},
 		// closeSpeed: 'normal',					
 		tpl: {
@@ -728,7 +732,7 @@ $(function() {
 
 		$hope_comment_copy.attr('id', '');	
 		// set basic info
-		$hope_comment_copy.find('div.hope_comment_id').text(comment['_id']);
+		$hope_comment_copy.find('.hope_comment_id').text(comment['_id']);
 		// set comments info
 		$hope_comment_tools = $hope_comment_copy.find('.hope_comment_tools');
 		$hope_comment_tools.children('.hope_comment_likes_count').text(tr('&1 people', comment.likes));
@@ -755,12 +759,15 @@ $(function() {
 		}
 
 		// set image and body
-		var $hope_comment_body = $hope_comment_copy.find('span.hope_comment_body');
-		var $image = $hope_comment_copy.find('.hope_comment_image');		
+		var $hope_comment_body = $hope_comment_copy.find('.hope_comment_body');
+		var $image = $hope_comment_copy.find('.hope_comment_image');	
 		if (comment.image_id) {
 			// var image = images[comment.image_id];
 			var image_size = perfect_mini(image['sizes']['mini'].split("x"), 110);
 			var $image_thum = $image.children('.hope_comment_image_thum');
+			
+			// the jquery.css selector change the style of original node(the cloned one)
+			$image.css('display', 'block');
 			
 			$image_thum.css({'height' : image_size[1] + 'px', 'width' : image_size[0] + 'px', 'margin-left' : (110 - image_size[0])/2 + 'px'});
 			// $image.css({'height' : image_size[1] + 'px', 'width' : image_size[0] + 'px'});				
@@ -770,11 +777,14 @@ $(function() {
 			$hope_comment_body.css('width', '496px');
 		} else {
 			$image.css('display', 'none');
-			$hope_comment_body.css('width', '100%');
+			// firefox can't break line for english, must explicit set the width value(not percent value, like 100%.).
+			$hope_comment_body.css('width', '620px');
 		};
 		//set body
 		if (comment.body) {
 			$hope_comment_body.text(comment.body);
+		} else {
+			$hope_comment_body.text('');
 		};
 
 		$hope_comment_copy.css('display', 'block');
@@ -812,12 +822,12 @@ $(function() {
 					
 					var $hope_comment_copy = create_hope_comment_show(response.hope_comment, response.user, response.image, $hope_comment_original);
 					
-					$hope_comment_copy.css('display', 'none');
 					if ($hope_special_comments_box.children().length > 0) {
 						$hope_comment_copy.insertBefore($hope_special_comments_box.children()[0]);
 					} else {
 						$hope_comment_copy.appendTo($hope_special_comments_box);
 					};
+					
 					$hope_comment_copy.slideDown();
 					
 				} else {
@@ -935,7 +945,6 @@ $(function() {
 	
 	function click_to_like(event) {
 		var $this = $(this);
-		
 		$.ajaxQueue({
 			url: '/hopeCommentLikes',
 			type: 'POST',
@@ -967,9 +976,36 @@ $(function() {
 		});
 		
 		event.stopPropagation();
-		}
+	}
 	
 	$('span.hope_comment_likes_sign').on('click', click_to_like);
+
+	// share actions
+	$('.hw_update_share_action').on('click', function(event) {
+		var body = $(this).parent().siblings('.hw_update_body').text();
+		var image_url = null;
+		var $image_url_node = $(this).parent().siblings('.hw_update_big_image_url');
+		if ($image_url_node.attr('class')) {
+			//TODO: change the host to image store url, when change the image store location
+			image_url = window.location.host + $image_url_node.text();
+		};
+		
+		share_something(body, image_url);
+		
+		event.stopPropagation();
+	});
+	
+	$('#share').on('click', function(event) {
+		var body = "<" + $('#hw_title').text() + ">" + $('#hw_body').text().substr(0, 300);
+		
+		var image_url = null;
+		if ($.data(document.body, 'medium_image_urls')) {
+			image_url = window.location.host + $.data(document.body, 'medium_image_urls')[0];
+		}
+		share_something(body, image_url);
+		
+		event.stopPropagation();
+	});
 	
 	// TODO: test the scroll offset on ipad and iphone
 	get_hope_comments(25);

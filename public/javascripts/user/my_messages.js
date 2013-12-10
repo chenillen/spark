@@ -2,20 +2,31 @@ $(function() {
 	
 	$('.update_image').fancybox({
 		openEffect: 'none',
-		closeEffect: 'none',
+		closeEffect: 'elastic',
 		type: 'image',
 		closeClick: true,
 		padding: 0,
 		closeBtn: false,
 		// closeSpeed: 'slow',
 		helpers : {
-			overlay : null
+			// overlay : null
 		},
 		// closeSpeed: 'normal',					
 		tpl: {
 			error: '<p class="fancybox-error">' + tr("The picture can't be loaded, please try again later.") +'</p>'
 		}
 	});
+	
+	function rand_num() {
+		var num = Math.random();
+		if (num < 0.3) {
+			return 1;
+		} else if (num < 0.7) {
+			return 3;
+		} else {
+			return 5;
+		};
+	}
 	
 	$('#user_home_menu').children('#my_messages').css('color', 'gray');
 	
@@ -50,6 +61,9 @@ $(function() {
 					var hope_updates = response.hope_updates;
 					var images_hash = response.images_hash;
 					
+					var rand_empty_num = rand_num();
+					var empty_num = 0;
+					
 					$autoload_messages_tools.children('#loading_messages_box').hide();
 					
 					for (var i = 0; i < hope_updates.length; i++) {
@@ -80,12 +94,21 @@ $(function() {
 								$update_body.css('width', '100%');
 								$update_image.css('display', 'none');
 							};
-
+								
 							$my_message_show_box_copy.children('.my_message_hope_title').text(hope.title);
 							$my_message_show_box_copy.children('.my_message_hope_title').attr('href', '/hopes/' + hope['_id']);
 							$my_message_show_box_copy.children('.my_message_updated_at').text(global_date_by_second2(hope_update.created_at));					
-
+							
+							if (empty_num == rand_empty_num - 1) {
+								$my_message_show_box_copy.css('margin-bottom', '68px');
+								empty_num = 0;
+								rand_empty_num = rand_num();
+							} else {
+								empty_num++;
+							};
+							
 							$my_message_show_box_copy.attr('id', null).appendTo($my_messages_show);	
+							$my_message_show_box_copy.show();
 						};
 						if (hope_updates.length > 0) {
 							last_message_create_time = hope_updates[hope_updates.length -1].created_at;

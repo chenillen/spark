@@ -1,3 +1,12 @@
+*html{
+	background-image:url(about:blank);
+	background-attachment:fixed;
+}
+
+img {
+	border: 0;
+}
+
 .field_error {
 	border: 1px solid red;
 }
@@ -7,9 +16,15 @@
 }
 
 body {
+	/*force break line*/
+	word-wrap:break-word;
+/*	white-space: -moz-pre-wrap;*/
+/*	word-break:normal;*/
+	word-break:break-all;
+	
 	margin: 0;
 	padding: 0; 
-	font-family: Verdana, Geneva, "New York", sans-serif;
+	font-family: Verdana, Geneva, sans-serif;
 }
 
 #main {
@@ -19,13 +34,17 @@ body {
 	width: 100%;
 }
 
-/* TODO: fix it on ie6. see http://ryanfait.com/resources/fixed-positioning-in-internet-explorer/ */
 #header {
 	position: fixed;
 	left: 0;
 	width: 100%;
 	height: 40px;
 	left: 0;
+	
+	/*for ie6*/
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop));
 }
 
 #header_background {
@@ -97,6 +116,8 @@ body {
 #avatar {
 	position: relative;
 	float: left;
+	width: 30px;
+	height: 30px;
 }
 
 #username {
@@ -105,6 +126,7 @@ body {
 	font-size: 14px;
 	margin-top: 12px;
 	margin-left: 5px;
+/*	vertical-align: center;*/
 }
 
 #user_home_link {
@@ -130,6 +152,13 @@ body {
 	width: 100%;
 	background-color: #A2A2A2;
 	opacity: 0.7;
+	display: none\0;
+	*display: none;
+}
+
+/* ie9 */
+:root #header_shadow {
+	display: block\9;
 }
 
 #content {
@@ -157,7 +186,6 @@ body {
 #login_wall_shielding {
 	position: absolute;
 	background-color: black;
-/*	opacity: 1;*/
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -172,7 +200,6 @@ body {
 	cursor: pointer;
 	right: 20px;
 	top: 10px;
-	font-size: 13px;
 	width: 20px;
 	height: 20px;
 }
@@ -181,8 +208,6 @@ body {
 	position: relative;
 	margin: auto;
 	width: 500px;
-/*	height: 100px;*/
-/*	border: 1px solid red;*/
 }
 
 #login_info {
@@ -238,16 +263,6 @@ body {
 	text-align: center;
 }
 
-/*#home_bar_shielding {
-	position: absolute;
-	width: 100%;
-	height: 70px;
-/*	background-color: white;*/
-/*	opacity: 0.3;*/
-	bottom: 0;
-	display: none;
-}
-
 #home_bar {
 	width: 800px;
 	height: 100%;
@@ -282,6 +297,81 @@ body {
 	color: gray;
 }
 
+#share_hope_shielding {
+	position: absolute;
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 500;
+	display: none;	
+}
+
+#share_hope_exit {
+	position: absolute;
+	color: white;
+	cursor: pointer;
+	right: 20px;
+	top: 10px;
+	width: 20px;
+	height: 20px;	
+}
+
+#share_hope_box {
+	position: relative;
+	margin: auto;
+	width: 500px;
+}
+
+#share_hope_info {
+	position: absolute;
+	top: 0;
+	color: white;
+	width: 500px;
+	left: 0px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+#share_platforms {
+	position: relative;
+	height: 100px;
+	margin: auto;
+	width: 168px;
+	top: 90px;
+}
+
+.share_platform {
+	position: relative;
+	float: left;
+	width: 64px;
+	height: 94px;
+	cursor: pointer;
+}
+
+#share_sina_weibo {
+	margin-right: 40px;
+}
+
+.share_platform_icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	
+}
+
+.share_platform_name {
+	position: absolute;
+	top: 70px;
+	color: white;
+	width: 100%;
+	text-align: center;
+}
+
 #new_messages_count_wrap_original {
 	display: none;
 }
@@ -306,4 +396,24 @@ body {
 	position: relative;
 	float: left;
 	font-size: 14px;
+}
+
+/*sexybutton sexysimple for ie*/
+.sexybutton.sexysimple {	
+	background-image: url(about:blank)\0;
+	*background-image: url(about:blank);
+	
+	border-bottom: none\0;
+	*border-bottom: none;
+}
+
+/* ie9 */
+:root .sexybutton.sexysimple {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.4)\9;
+	border-bottom: 1px solid transparent\9;		
+	background-image: url(images/skins/simple/awesome-overlay-sprite.png)\9;	
+}
+
+.sexysimple.sexybutton {
+/*	background-image: none;*/
 }

@@ -1,6 +1,6 @@
 class HopeCommentLike
   include Mongoid::Document
-  include Mongoid::Timestamps::Created
+  include ElevenHelper::Mongoid::Timestamps::CreatedAt
   
   field :hope_comment_id
   field :user_id, type: String

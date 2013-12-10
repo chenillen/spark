@@ -41,6 +41,7 @@ $(function() {
 							var $my_follow_box_copy = $my_follow_box_original.clone(true, true);
 							
 							$my_follow_box_copy.attr('id', null);
+							// 
 							$my_follow_box_copy.children('.mf_hope_id').text(hope['_id']);
 							$my_follow_box_copy.children('.mf_hope_title').text(hope.title);
 							$my_follow_box_copy.children('.mf_hope_title').attr('href', '/hopes/' + hope['_id']);
@@ -52,6 +53,7 @@ $(function() {
 							// };
 
 							$my_follow_box_copy.appendTo($my_follows_show);	
+							$my_follow_box_copy.show();
 						};
 					}
 					

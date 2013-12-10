@@ -101,7 +101,6 @@
 		<div id="hw_updates_show_box">
 			<div id="hw_updates_prompt"><%= t('views.hope.Updates') %></div>
 			<div class="hw_split_line"></div>
-
 			<div id="hw_updates_show">
 				<% @hope_updates.each do |hope_update| %>
 					<div class="hw_update_show">
@@ -113,11 +112,12 @@
 							%>
 								<span class="hw_update_body" style="width:584px;"><%= hope_update.body %></span>
 								<a class="hw_update_image" href="<%= update_image[:medium_url] %>" style="margin-left: <%= (108 - image_size[0])/2.0 %>px;"><img src="<%= update_image[:mini_url] %>" style="width:<%= image_size[0] %>px; height:<%= image_size[1] %>px;" /></a>								
+								<div class="hw_update_big_image_url"><%= update_image[:big_url] %></div>
 							<% else %>
 								<span class="hw_update_body" style="width:100%;"><%= hope_update.body %></span>					  
-							<% end %>		
+							<% end %>
 							<div class="hw_update_assist">
-								<span class="hw_update_create_time"><%= spark_time_by_second2(hope_update.created_at) %></span>								
+								<span class="hw_update_create_time"><%= spark_time2(hope_update.created_at) %></span>								
 								<span class="hw_action_time_split">|</span>
 								<span class="hw_update_share_action"><%= t('info.Share') %></span>														
 							</div>
@@ -131,10 +131,11 @@
 	<div id="hw_new_comment_box">
 		<div id="hw_new_comment_count">300</div>
 		<textarea id="hw_new_comment" maxlength="300">我要留言....</textarea>
+		
 		<div id="hw_comment_toolbar">
 			<div id="hw_comment_add_image_tool">
 				<img id="hw_comment_add_image_icon" src="/images/Picture_24x24.png" />
-				<div id="hw_comment_add_image_info"><%= t('info.picture') %></div>
+				<div id="hw_comment_add_image_info"><%= t('info.picture') %></div>				
 				<%= form_tag('/hopeCommentImages', :method => "post", :id => "hw_add_commnet_image_form", :method => 'post', :enctype => "multipart/form-data" )  do %>
 					<input type="file" id="hw_comment_add_file" name="hope_comment_image[image]"/>
 					<!-- WARNING: add the iframe_post field when using iframe-post  -->
@@ -164,9 +165,9 @@
 	</div>
 	<div id="hope_comment_autoload"></div>
 </div>
-<iframe id="hw_add_comment_iframe">
+<iframe id="hw_add_comment_iframe" name="hw_add_comment_iframe">
 </iframe>
-<div class="hope_comment" id="hope_comment_original" >
+<div class="hope_comment" id="hope_comment_original" style="display: none;">
 	<div class="hope_comment_id" style="display: none;"></div>
 	<img class="hope_avatar" src="/images/logo_50x50.jpg">
 	<a class="hope_user_name"></a>
@@ -174,7 +175,7 @@
 		<tr>
 			<td>
 				<a class="hope_comment_image"><img class="hope_comment_image_thum"></a>
-				<span class="hope_comment_body"></span>
+				<div class="hope_comment_body"></div>
 			</td>
 		</tr>
 		<tr>
@@ -205,7 +206,7 @@
 	</table>
 </div>
 
-<div id="hope_image_slide_show_box">
+<!-- <div id="hope_image_slide_show_box">
 	<div id="hope_image_slide_show">
 		<img id="hiss_image_slide_show_exit" src="/images/cross_48x48.png" />
 		<div id="hiss_image_description"></div>
@@ -218,4 +219,4 @@
 		<div id="hiss_nav_shielding_left" class="hiss_nav_shielding"></div>
 		<div id="hiss_nav_shielding_right" class="hiss_nav_shielding"></div>
 	</div>      
-</div>
+</div> -->

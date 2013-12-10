@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,7 +25,7 @@ gem 'rails', '3.2.1'
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug19'
+# gem 'ruby-debug19'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 # gem 'ruby-debug-base19'
 
@@ -45,3 +45,5 @@ gem 'http_accept_language'
 gem 'rails-i18n'
 # gem 'mongoid-paperclip'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
+
+gem 'ruby-hmac'

@@ -1,7 +1,7 @@
 class Watchdog      
 
   include Mongoid::Document
-  include Mongoid::Timestamps::Updated
+  include ElevenHelper::Mongoid::Timestamps::UpdatedAt
   
   field :user_id, type: String
   field :token, type: Integer

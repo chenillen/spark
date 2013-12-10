@@ -2,7 +2,7 @@
 	position: relative;
 	width: 700px;
 	margin: auto;
-	margin-top: 34px;
+	margin-top: 32px;
 }
 
 #my_comments_show {
@@ -39,6 +39,7 @@
 	float: right;
 	font-size: 14px;
 	margin-top: -3px;
+	margin-top: -1px\0;
 }
 
 

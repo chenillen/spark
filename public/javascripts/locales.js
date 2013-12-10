@@ -38,7 +38,7 @@ var spark_locales = {
 		'Your session was timeout, please re-login' : '您的登陆已经超时，请重新登陆',
 		'created at &1' : '创建于&1',
 		'updated at &1' : '更新于&1',
-		'Are you sure to delete this hope?' : '您确定要删除此求助信息么？',
+		'Are you sure to delete this hope?' : '您确定要删除此文章么？',
 		'Are you sure to delete this update?' : '您确定要删除此更新么？',
 		'Are you sure to unfollow?' : '您确定要取消关注么？',
 		'Are you sure to delete this image?' : '您确定要删除此图片么？',

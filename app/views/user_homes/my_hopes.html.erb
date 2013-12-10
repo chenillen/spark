@@ -25,17 +25,19 @@
 		<div class="mc_hope_id"></div>
 		<a class="mc_hope_title"></a>
 		<div class="mc_hope_body"></div>
-		<span class="mc_time">
-			<span class="mc_hope_created_at"></span>
-			<span class="mc_hope_updated_at"></span>
-		</span>
-		<span class="mc_hope_split">-</span>
-		<span class="mc_hope_followers"></span>
+		<div class="mc_assist">
+			<span class="mc_time">
+				<span class="mc_hope_created_at"></span>
+				<span class="mc_hope_updated_at"></span>
+			</span>
+			<span class="mc_hope_split">-</span>
+			<span class="mc_hope_followers"></span>
+		</div>
 		<div class="mc_action">
-			<div class="mc_update"><%= t('info.Update') %></div>
-			<div class="mc_edit"><%= t('info.Edit') %></div>		
-			<div class="mc_delete"><%= t('info.Delete') %></div>
-			<div class="mc_finish"><%= t('info.Finish') %></div>			
+			<span class="mc_update"><%= t('info.Update') %></span>
+			<span class="mc_edit"><%= t('info.Edit') %></span>		
+			<span class="mc_delete"><%= t('info.Delete') %></span>
+			<span class="mc_finish"><%= t('info.Finish') %></span>		
 		</div>
 		<div class="hope_updates_box">
 			<div class="hope_update_textarea_count">300</div>
@@ -43,9 +45,9 @@
 			<div class="hope_update_tools">
 				<div class="hope_update_image_tool">
 					<div class="hope_update_image_func">
-						<img class="hope_update_image_icon" src="/images/Picture_24x24.png">						
+						<img class="hope_update_image_icon" src="/images/Picture_24x24.png" />						
 						<%= form_tag('/hopeUpdateImages', :method => "post", :class => "hope_update_image_form", :method => 'post', :enctype => "multipart/form-data" )  do %>
-							<input type="file" class="hope_update_image_file" name="image">
+							<input type="file" class="hope_update_image_file" name="image" />
 							<!-- WARNING: add the iframe_post field when using iframe-post  -->
 							<input type="hidden" name="iframe_post" value="true" />
 						<% end %>
@@ -53,10 +55,10 @@
 					<div class="hope_update_image_prompt"><%=t('info.picture')%></div>					
 					<div class="hope_update_image_upload_box">
 						<div class="hope_update_image_uploading">
-							<img src="/images/image_32x32.png" class="hope_update_image_uploading_image">
-							<img src="/images/loading.gif" class="hope_update_image_uploading_loading">
+							<img src="/images/image_32x32.png" class="hope_update_image_uploading_image" >
+							<img src="/images/loading.gif" class="hope_update_image_uploading_loading" >
 						</div>
-						<img class="hope_update_uploaded_image">
+						<img class="hope_update_uploaded_image" />
 						<img src="/images/remove_48x48.png" class="hope_update_uploaded_image_remove" />
 					</div>
 					<div class="hope_update_image_cancled">false</div>
@@ -90,10 +92,12 @@
 			<img class="hope_update_image" />		
 			<span class="hope_update_body"></span>
 		</div>
-		<span class="hope_update_delete_action"><%= t('info.Delete') %></span>			
-		<span class="hope_update_show_action_split">|</span>
-		<span class="hope_update_created_at"></span>		
+		<div class="hope_update_assist">
+			<span class="hope_update_delete_action"><%= t('info.Delete') %></span>			
+			<span class="hope_update_show_action_split">|</span>
+			<span class="hope_update_created_at"></span>
+		</div>
 	</div>
 
-	<iframe id="hope_update_image_iframe"></iframe>
+	<iframe id="hope_update_image_iframe" name="hope_update_image_iframe"></iframe>
 </div>

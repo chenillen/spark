@@ -3,9 +3,15 @@ $(function() {
 	$('#hope_form_title').focus();
 	
 	var $create_hope_success_box = $('#create_hope_success_box');
-	var $hope_form_image_box = $('#hope_form_image_box');
-	var $hope_form_image_edit = $('#hope_form_image_edit');
+	var $hope_form_image_box_box = $('#hope_form_image_box_box');	
+	var $hope_form_image_box_body = $hope_form_image_box_box.children('#hope_form_image_box_body');	
+	var $hope_form_image_box_shielding = $hope_form_image_box_box.children('#hope_form_image_box_shielding');
+	var $hope_form_image_box = $hope_form_image_box_body.children('#hope_form_image_box');
+	var $hope_form_image_edit_shielding = $hope_form_image_box_box.children('#hope_form_image_edit_shielding');
+	var $hope_form_image_edit_body = $hope_form_image_box_box.children('#hope_form_image_edit_body');
+	var $hope_form_image_edit = $hope_form_image_edit_body.children('#hope_form_image_edit');
 	var $upload_image_button = $('#hope_form_image_box_upload_image_button');
+	var $hope_form_uploaded_images_box = $('#hope_form_uploaded_images_box')
 	var new_response = null;
 	var max_upload_pictures = 10;
 	var uploading_image_success = false;  
@@ -37,22 +43,19 @@ $(function() {
 	}
 
 	function hide_edit_image_box() {
-		var $shielding_box = $('#shielding_edit_image_box');
-		$hope_form_image_edit.fadeOut();
-		$shielding_box.fadeOut().delay(100).queue(function(){
-			$shielding_box.remove();
-		});
-		// $('#hope_form_image_edit_background').css('background-image', "url('/images/pictures_64x64.png')");
-		$('#hope_form_image_edit_image_name').text('');
-		$('#hope_form_image_edit_image_description').val('');
+		$hope_form_image_edit_shielding.fadeOut();
+		$hope_form_image_edit_body.fadeOut();		
+
+		$hope_form_image_edit.children('#hope_form_image_edit_image_name').text('');
+		$hope_form_image_edit.children('#hope_form_image_edit_image_description').val('');
 	}
 	
 	function quit_upload_image_box() {
-		$hope_form_image_box.fadeOut();
-		$('.shielding').fadeOut();
+		$hope_form_image_box_box.fadeOut();
+		// $('.shielding').fadeOut();
 
-		$('#hope_form_uploaded_images_box').appendTo('#hope_form');
-		$('#hope_form_uploaded_images_box').hide();
+		$hope_form_uploaded_images_box.appendTo('#hope_form');
+		$hope_form_uploaded_images_box.hide();
 	}
 	
 	function safe_quit_upload_image_box() {
@@ -61,15 +64,6 @@ $(function() {
 		} else if ($hope_form_image_box.is(':visible')) {
 			quit_upload_image_box();
 		};
-	}
-	
-	function shielding_show(z_index) {
-		var $shielding = $('.shielding');
-		
-		$shielding.fadeIn('slow');
-		$shielding.css('width', $(document).width() + 'px');
-		$shielding.css('height', $(document).height() + 'px');
-		$shielding.css('z-index', z_index);
 	}
 	
 	$('#hope_form_box').click(function(event){
@@ -190,7 +184,7 @@ $(function() {
 								$this.click();
 							});
 						} else {
-							if (response.errors.too_many_hopes) {
+							if (response.errors && response.errors.too_many_hopes) {
 								alert(response.errors.too_many_hopes);
 							};
 						};
@@ -243,24 +237,24 @@ $(function() {
 	
 	
 	$('.hope_form_uploaded_image_thum').click(function(event) {
+		// for ie
+		$hope_form_image_edit_shielding.css('filter', 'Alpha(opacity=60)');		
+		// for ie6
+		$hope_form_image_edit_shielding.width($hope_form_image_edit_shielding.parent().width());
+		$hope_form_image_edit_shielding.height($hope_form_image_edit_shielding.parent().height())		
 		
-		$('#hope_form_image_edit_background').css('background-image', "url('" + $(this).attr('src') + "')");
-		$('#hope_form_image_edit_image_name').text($(this).siblings('.hope_form_uploaded_image_name').text());           
+		$hope_form_image_edit_shielding.fadeIn();
+		$hope_form_image_edit_body.fadeIn();		
+		
+		$hope_form_image_edit.children('#hope_form_image_edit_background').css('background-image', "url('" + $(this).attr('src') + "')");
+		$hope_form_image_edit.children('#hope_form_image_edit_image_name').text($(this).siblings('.hope_form_uploaded_image_name').text());           
 		var desc = $(this).siblings('.hope_form_uploaded_image_description').text();                                     
-		var $description = $('#hope_form_image_edit_image_description');
+		var $description = $hope_form_image_edit.children('#hope_form_image_edit_image_description');
 
-		$('#hope_form_image_edit_description_count').text(140 - $description.val().length);
-		$('#hope_form_image_edit_target_id').text($(this).parent().attr('id'));
-		
-		var $new_shielding = $('.shielding').clone(true);
-		$new_shielding.css({'z-index' : 300, 'display' : 'none'});
-		$new_shielding.attr('id', 'shielding_edit_image_box');
-		$new_shielding.appendTo($('body'));
-		$hope_form_image_edit.fadeIn();
-		$new_shielding.fadeIn('slow');
-		$hope_form_image_edit.css('z-index', 301);
+		$hope_form_image_edit.children('#hope_form_image_edit_target_id').text($(this).parent().attr('id'));
 		
 		$description.val(desc).focus();
+		$hope_form_image_edit.children('#hope_form_image_edit_description_count').text(140 - $description.val().length);
 		
 		event.stopPropagation();   
 	});
@@ -305,7 +299,7 @@ $(function() {
 		if (!uploading_image_success) return false;
 		
 		// update new image description
-		var $uploading_image_desc = $('#hope_form_image_uploading_image_description');
+		var $uploading_image_desc = $hope_form_image_edit.children('#hope_form_image_uploading_image_description');
 
 		var image_desc = $.trim($uploading_image_desc.val());
 		if (image_desc.length > 140) return false;
@@ -329,8 +323,8 @@ $(function() {
 		var image_size = new_response.image_size.split("x");
 		perfect_mini(image_size, 40);
 
-		var uploaded_image_count = $('#hope_form_uploaded_images_box').children().length;				
-		var $uploaded_images_box = $('#hope_form_uploaded_images_box');
+		var uploaded_image_count = $hope_form_uploaded_images_box.children().length;				
+		var $uploaded_images_box = $hope_form_uploaded_images_box;
 		if( parseInt($uploaded_images_box.css('height'), 10) < (parseInt(uploaded_image_count + 1, 10)/10) * uploaded_image_thum_length) {
 			$hope_form_image_box.css('height', parseInt($hope_form_image_box.css('height'), 10) + uploaded_image_thum_length + 'px' );
 			$uploaded_images_box.css('height', parseInt($uploaded_images_box.css('height'), 10) + uploaded_image_thum_length + 'px');
@@ -351,7 +345,7 @@ $(function() {
 		$new_uploaded_image.children('.hope_form_uploaded_image_remove').css({'top' : thum_top - 8 + 'px', 'left' : thum_left + image_size[0] - 8 + 'px'});
 
 		$new_uploaded_image.css({'left' : (uploaded_image_count%10)*uploaded_image_thum_length + 'px', 'top' : parseInt(uploaded_image_count/10, 10)*uploaded_image_thum_length + 'px'});
-		$new_uploaded_image.appendTo($('#hope_form_uploaded_images_box'));
+		$new_uploaded_image.appendTo($hope_form_uploaded_images_box);
 		$new_uploaded_image.fadeIn();
 		
 		hide_image_uploading_box();
@@ -367,8 +361,7 @@ $(function() {
 		event.stopPropagation();
 	});
 	
-	$('#hope_form_image_box_quit').click(function(event){
-
+	$('#hope_form_image_box_quit').click(function(event) {
 		quit_upload_image_box();
 		
 		event.stopPropagation();
@@ -376,12 +369,14 @@ $(function() {
 	
 	$('#hope_form_add_picture_button').click(function(event) {
 
-		shielding_show(200);
-		$hope_form_image_box.fadeIn();
-		$hope_form_image_box.css('z-index', 201);
+		// shielding_show(200);
+		$hope_form_image_box_box.appendTo($('body'));
+		$hope_form_image_box_box.css({'width' : $(document).width() + 'px', 'height' : $(document).height()});
+		$hope_form_image_box_box.fadeIn();
+		// $hope_form_image_box.css('z-index', 201);
 		
-		$('#hope_form_uploaded_images_box').appendTo('#hope_form_image_box');
-		$('#hope_form_uploaded_images_box').show();
+		$hope_form_uploaded_images_box.appendTo($hope_form_image_box).show();
+		// $('#hope_form_uploaded_images_box').show();
 		
 		event.stopPropagation();
 	});
@@ -469,7 +464,7 @@ $(function() {
 		post : function(){
 			uploading_image_success = false;	
 			new_response = null;
-			if ($('#hope_form_uploaded_images_box').children().length >= max_upload_pictures) {
+			if ($hope_form_uploaded_images_box.children().length >= max_upload_pictures) {
 				return false;
 			};
 			return true;
@@ -498,8 +493,7 @@ $(function() {
 	    
 // 	upload image
 	$('#hope_form_upload_image_file').change(function(event) {
-// TODO: It's not work on opera 11.52, for unknown reason.
-		if ($('#hope_form_uploaded_images_box').children().length < max_upload_pictures) {
+		if ($hope_form_uploaded_images_box.children().length < max_upload_pictures) {
 			var image_name = $(this).val().split('\\').pop();
 			var extension = image_name.split('.').pop().toLowerCase();
 
@@ -521,7 +515,9 @@ $(function() {
 				upload_image_fail(tr('please upload picture with jpg, gif or png format'));
 			};
 		} else {
+			$(this).attr('value', null);
 			upload_image_fail(tr('you can maximum select &1 pictures', max_upload_pictures));
+
 			return false;
 		};
 		
@@ -529,7 +525,7 @@ $(function() {
 		
 		return true;
 	});
-	
+		
 	$('body').on('keydown', function(event) {
 		switch(event.which) {
 			// esc
@@ -539,5 +535,12 @@ $(function() {
 				};
 				break;
 		}
+	});
+	
+	$(window).on('resize', function(event) {
+		if ($hope_form_image_box_box.is(':visible')) {
+			$hope_form_image_box_box.width($('body').width());
+			$hope_form_image_box_box.height($(document).height());			
+		};
 	});
 });

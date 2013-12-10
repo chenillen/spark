@@ -13,13 +13,13 @@
         :Click_to_view_replies => '点击查看所有的回复',
         :have => '共有',
         :tiao_replies => '条回复',
-        :this_hope_was_deleted => '该求助已被删除',
+        :this_hope_was_deleted => '该文章已被删除',
         :count_updates => "共有%{count}条更新",
         :Updates => '更新',
         :Author => '作者：',
         :Create_time => '创建时间：',
         :Last_edit_time => '最后编辑时间：',
-        :create_hope_success_message => '如果有新的消息，请及时到“我的主页->我的求助“中进行更新。'
+        :create_hope_success_message => '如果有新的消息，请及时到“我的主页->我的希望“中进行更新。'
       }
     }
   }

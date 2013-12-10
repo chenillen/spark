@@ -41,7 +41,7 @@
       :period => '。',
       :comma => '，',
       :Spark => '希望帮',
-      :Create_hope => '需要帮助？',
+      :Create_hope => '创建希望',
       :Login => '登陆',
       :Logout => '安全退出',
       :Follow => '关注',
@@ -50,12 +50,12 @@
       :updated_at => '更新于%{time}',
       :Loading_updates => '更新加载中.....',
       :Loading_comments => '评论加载中.....',
-      :Loading_hopes => '求助加载中.....',
+      :Loading_hopes => '希望加载中.....',
       :Loading_follows => '关注加载中.....',
       :Loading_messages => '消息加载中.....',
       :Can_not_loading_updates => "无法加载更新",
       :Can_not_loading_replies => '无法加载评论',
-      :Can_not_loading_hopes => '加载求助失败',
+      :Can_not_loading_hopes => '加载希望失败',
       :Can_not_loading_follows => '加载关注失败',
       :Can_not_loading_messages => '加载消息失败',
       :please => '请',
@@ -64,7 +64,8 @@
       :Next_page => '下一页',
       :Previous_page => '上一页',
       :count_people_like_this => "%{count}人支持",
-      :Contacts => '联系方式'
+      :Contacts => '联系方式',
+      :Share_to => '转发到'
     },
     :date => {
       :count_seconds_ago => "%{count}秒前",
