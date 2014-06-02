@@ -5,7 +5,7 @@ sina_weibo:
   redirect_uri: http://xiwangbang.com/login?platform=SinaWeibo
 
 tencent_weibo:
-  client_id: 801067714
-  client_secret: 42ad1d6476e3b16e6fce4af9afceadaa
+  client_id: 801476960
+  client_secret: c783f7a55525914730b94abb45b10a58
   register_url: xiwangbang.com
   redirect_uri: http://xiwangbang.com/login?platform=TencentWeibo

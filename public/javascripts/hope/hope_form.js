@@ -14,7 +14,7 @@ $(function() {
 	var $hope_form_uploaded_images_box = $('#hope_form_uploaded_images_box')
 	var new_response = null;
 	var max_upload_pictures = 10;
-	var uploading_image_success = false;  
+	var uploading_image_success = false;
 	var uploaded_image_thum_length = 50; 
 		 
 	// set corner

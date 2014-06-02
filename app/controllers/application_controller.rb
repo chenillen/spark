@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   def set_locale
-    I18n.locale = request.preferred_language_from([:'zh-CN'])
+    I18n.locale = http_accept_language.preferred_language_from([:'zh-CN'])
   end
 
   def authorize

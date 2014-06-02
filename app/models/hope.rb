@@ -10,9 +10,9 @@ class Hope
   field :image_ids, type: Array, default: []
   field :follows, type: Integer, default: 0
   field :finish, type: Boolean, default: false
-  
-  index [[:user_id, 1], [:created_at, -1]]
-  index [[:follows, -1], [:finish, 1]]
+
+  index({user_id: 1, created_at: -1})
+  index({follows: -1, finish: 1})
   
   attr_accessible :title, :body, :contact, :image_ids
   

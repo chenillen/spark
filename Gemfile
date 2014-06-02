@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -39,11 +39,11 @@ gem 'rake'
 
 # custom gems
 gem 'i18n'
-gem 'mongoid'
+gem 'mongoid', "2.8.0"
 gem 'bson_ext'
 gem 'http_accept_language'
 gem 'rails-i18n'
-# gem 'mongoid-paperclip'
+#gem "paperclip", "3.4.2"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
 gem 'ruby-hmac'
